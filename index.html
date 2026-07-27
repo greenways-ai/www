@@ -3,21 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Greenways creates trusted records for campaigns, music and digital communities.">
-  <meta name="theme-color" content="#f4f6ef">
-  <meta property="og:title" content="Greenways — Trusted records for creative work">
-  <meta property="og:description" content="A lightweight registry for provenance, attribution and accountability across campaigns, music and digital spaces.">
+  <meta name="description" content="Private ledger technology for secure collaboration, attribution and publishing.">
+  <meta name="theme-color" content="#f3f5ef">
+  <meta property="og:title" content="Greenways">
+  <meta property="og:description" content="Distributed provenance for creative work, marketing and code.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://greenways-ai.github.io/www/">
-  <title>Greenways — Trusted records for creative work</title>
+  <title>Greenways — Secure collaboration, attribution and publishing</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Greenways home">
-      <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-hidden="true">
+  <header>
+    <a class="brand" href="./" aria-label="Greenways home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
         <path d="M8 37C15 21 24 12 40 8"/>
         <path d="M13 39c6-8 13-13 24-16"/>
         <circle cx="13" cy="34" r="3"/>
@@ -26,118 +25,20 @@
       </svg>
       <span>Greenways</span>
     </a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#work">What it does</a>
-      <a href="#principles">Principles</a>
-      <a href="https://github.com/greenways-ai">GitHub</a>
-    </nav>
+
+    <a class="header-link" href="https://github.com/greenways-ai">GitHub ↗</a>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">A trusted layer for digital work</p>
-        <h1 id="hero-title">Make the record<br><em>part of the work.</em></h1>
-        <p class="hero-text">Greenways creates verifiable records for campaigns, music and digital communities—capturing provenance, attribution and accountability without adding another approval step.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#work">Explore the model</a>
-          <a class="button button-secondary" href="https://github.com/greenways-ai/hara">View Hara</a>
-        </div>
-      </div>
-
-      <div class="record-card" aria-label="Example Greenways record">
-        <div class="record-head">
-          <span>GREENWAYS RECORD</span>
-          <span class="status"><i></i> VERIFIED</span>
-        </div>
-        <div class="record-title">Campaign / Winter Launch</div>
-        <dl>
-          <div><dt>Contributors</dt><dd>12</dd></div>
-          <div><dt>Assets</dt><dd>47</dd></div>
-          <div><dt>Versions</dt><dd>83</dd></div>
-          <div><dt>Finalised</dt><dd>27 JUL 2026</dd></div>
-        </dl>
-        <div class="record-line"></div>
-        <p>Every contribution is attached to the work as it moves—creating an audit trail that can be inspected, referenced and carried forward.</p>
-        <div class="hash">gw:7f2a…c819</div>
-      </div>
-    </section>
-
-    <section class="intro band">
-      <p class="section-index">01 / THE IDEA</p>
-      <div>
-        <h2>A registry, not a platform tax.</h2>
-        <p>Greenways is designed to sit underneath existing tools. It observes the lifecycle of work, records meaningful events and gives participants a durable account of what happened.</p>
-      </div>
-    </section>
-
-    <section id="work" class="work-section">
-      <div class="section-heading">
-        <p class="section-index">02 / FIRST USES</p>
-        <h2>Start where attribution<br>already breaks.</h2>
-      </div>
-      <div class="work-grid">
-        <article>
-          <span class="card-number">01</span>
-          <h3>Campaign records</h3>
-          <p>Track content, briefs, versions and contributors across a marketing campaign. Give managers a complete audit trail without asking every participant to maintain one.</p>
-          <ul>
-            <li>Automatic contribution capture</li>
-            <li>Asset and version lineage</li>
-            <li>Campaign-level audit export</li>
-          </ul>
-        </article>
-        <article>
-          <span class="card-number">02</span>
-          <h3>Music provenance</h3>
-          <p>Preserve the history around a track—from sessions and stems to splits, releases and licences—so credit remains attached to the work.</p>
-          <ul>
-            <li>Session and recording history</li>
-            <li>Contributor attribution</li>
-            <li>Rights and release records</li>
-          </ul>
-        </article>
-        <article>
-          <span class="card-number">03</span>
-          <h3>Trusted spaces</h3>
-          <p>Create digital spaces with their own scoped rules, credentials and public records. Greenways governs the space itself, not the rest of the internet.</p>
-          <ul>
-            <li>Accreditation and roles</li>
-            <li>Transparent local rules</li>
-            <li>Portable reputation records</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="principles" class="principles band">
-      <p class="section-index">03 / PRINCIPLES</p>
-      <div class="principle-grid">
-        <article><h3>Invisible by default</h3><p>The record should emerge from the workflow—not become another task inside it.</p></article>
-        <article><h3>Scoped authority</h3><p>A Greenways space can make rules for itself, while remaining legible to the outside world.</p></article>
-        <article><h3>Durable attribution</h3><p>Credit, provenance and decisions stay attached to the work as tools and teams change.</p></article>
-        <article><h3>Open foundations</h3><p>Core infrastructure is built in public, including Hara, Greenways’ language and runtime project.</p></article>
-      </div>
-    </section>
-
-    <section class="cta">
-      <p class="section-index">04 / BUILDING IN PUBLIC</p>
-      <h2>Greenways is taking shape.</h2>
-      <p>The first pilots focus on campaign tracking and music attribution. The underlying systems are being developed openly through the Greenways GitHub organisation.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="https://github.com/greenways-ai">Follow development</a>
-        <a class="button button-secondary" href="https://github.com/greenways-ai/hara">Explore Hara</a>
-      </div>
-    </section>
+  <main>
+    <p class="kicker">Private ledger technology</p>
+    <h1>Secure collaboration.<br>Clear attribution.<br>Trusted publishing.</h1>
+    <p class="summary">Distributed provenance for creative work, marketing and code.</p>
+    <a class="action" href="https://github.com/greenways-ai">Explore Greenways <span aria-hidden="true">↗</span></a>
   </main>
 
   <footer>
-    <a class="brand footer-brand" href="#top">
-      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 37C15 21 24 12 40 8"/><path d="M13 39c6-8 13-13 24-16"/><circle cx="13" cy="34" r="3"/><circle cx="24" cy="22" r="3"/><circle cx="37" cy="11" r="3"/></svg>
-      <span>Greenways</span>
-    </a>
-    <p>Trusted records for creative work.</p>
-    <p>© <span data-year>2026</span> Greenways</p>
+    <span>Creative · Marketing · Code</span>
+    <span>© 2026 Greenways</span>
   </footer>
 </body>
 </html>
