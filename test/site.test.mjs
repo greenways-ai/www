@@ -12,9 +12,10 @@ test("the site uses the canonical apex and selected positioning", async () => {
     source("src/pages/index.astro")
   ]);
   assert.match(config, /site: "https:\/\/greenways\.ai"/);
-  assert.match(home, /Make work that/);
-  assert.match(home, /outlives the tool/);
-  assert.match(home, /growing into a connected world/);
+  assert.match(home, /A high-trust world for creative work/);
+  assert.match(home, /Create together/);
+  assert.match(home, /building a publishing platform/);
+  assert.doesNotMatch(home, /Keep what you make/);
   assert.match(home, /Independent foundations/);
   assert.match(home, /One connected world/);
   assert.match(layout, />GREENWAYS</);

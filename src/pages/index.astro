@@ -4,16 +4,17 @@ import CreativeLabs from "../components/CreativeLabs.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import BetaForm from "../components/BetaForm.astro";
 import MosaicMark from "../components/MosaicMark.astro";
+import ThemedArtwork from "@greenways-ai/visual-language/ThemedArtwork.astro";
 import { projects } from "../data/projects";
 ---
-<BaseLayout title="Greenways" description="A collaborative creative environment growing into a connected world of studios, archives, personal nodes and shared spaces." path="/">
+<BaseLayout title="Greenways" description="A high-trust world for creative work, built around collaborative publishing, attribution and history." path="/">
   <section class="home-hero">
-    <img class="home-hero__image" src="/assets/greenways-hero.png" alt="A monumental future rotunda reached by a luminous mosaic causeway above the clouds" fetchpriority="high" />
+    <ThemedArtwork class="home-hero__image" light="/assets/greenways-city-day.webp" dark="/assets/greenways-city-night.webp" lightAlt="People creating, learning and maintaining public systems in a sunlit digital mosaic city" darkAlt="Operator teams keeping the same digital mosaic city and its luminous civic paths running at night" position="center" />
     <div class="home-hero__veil"></div>
     <div class="home-hero__copy">
-      <p class="eyebrow"><span class="status-dot"></span> Collaborative creative environment · Public beta</p>
-      <h1>Make work that<br />outlives the tool.</h1>
-      <p>Compose music. Shape images and worlds. Work with people and machines. Greenways is growing into a connected world of studios, archives, personal nodes and shared spaces.</p>
+      <p class="eyebrow"><span class="status-dot"></span> A high-trust world for creative work · Public beta</p>
+      <h1>Create together.</h1>
+      <p>Compose music. Shape images and worlds. Work with people and machines. Greenways is building a publishing platform where contributions, approvals, attribution and history travel with the work.</p>
       <div class="hero-actions"><a class="button button--gold" href="#early-access">Join early access</a><a class="button button--ghost" href="#studio">Explore the studio <span aria-hidden="true">↓</span></a></div>
     </div>
     <div class="hero-inscription"><span>CREATE</span><i></i><span>COLLABORATE</span><i></i><span>ATTRIBUTE</span><i></i><span>PUBLISH</span></div>

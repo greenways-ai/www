@@ -4,6 +4,9 @@ import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/ibm-plex-mono/400.css";
+import "@greenways-ai/visual-language/theme.css";
+import MosaicLogo from "@greenways-ai/visual-language/MosaicLogo.astro";
+import ThemeToggle from "@greenways-ai/visual-language/ThemeToggle.astro";
 import "../styles/global.css";
 
 type Props = {
@@ -21,7 +24,7 @@ const {
   description,
   path = "/",
   image = "/assets/og-greenways-whatsapp.jpg",
-  imageAlt = "Greenways — Make work that outlives the tool, beside a celestial civic rotunda",
+  imageAlt = "Greenways — Create together, beside a celestial civic rotunda",
   theme = "greenways",
   noindex = false
 } = Astro.props;
@@ -38,12 +41,13 @@ const structuredData = {
 };
 ---
 <!doctype html>
-<html lang="en" data-theme={theme}>
+<html lang="en" data-theme="light" data-theme-preference="auto" data-project={theme}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#07100e" />
+    <meta name="theme-color" content="#f2ebdd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1513" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -64,12 +68,13 @@ const structuredData = {
     <meta name="twitter:image:alt" content={imageAlt} />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script>import "@greenways-ai/visual-language/theme.js";</script>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Greenways home">
-        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 39C15 21 25 12 41 7"/><path d="M13 40c7-8 14-13 25-16"/><circle cx="13" cy="34" r="3"/><circle cx="25" cy="21" r="3"/><circle cx="39" cy="9" r="3"/></svg>
+        <MosaicLogo project="greenways" label="Greenways" />
         <span>GREENWAYS</span>
       </a>
       <nav aria-label="Primary navigation">
@@ -77,11 +82,12 @@ const structuredData = {
         <a href="/opensource/">Open source</a>
         <a href="/#principles">Principles</a>
         <a class="nav-cta" href="/#early-access">Early access</a>
+        <ThemeToggle />
       </nav>
     </header>
     <main id="content"><slot /></main>
     <footer class="site-footer">
-      <div><span class="wordmark-text">GREENWAYS</span><p>Make work that outlives the tool.</p></div>
+      <div><span class="wordmark-text">GREENWAYS</span><p>Create together.</p></div>
       <nav aria-label="Footer navigation">
         <a href="/opensource/">Open source</a>
         <a href="https://github.com/greenways-ai">GitHub ↗</a>
