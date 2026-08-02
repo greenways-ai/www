@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import MosaicMark from "../../components/MosaicMark.astro";
+import { projects } from "../../data/projects";
+---
+<BaseLayout title="Open source" description="The open language, gateway, personal ledger and historical memory beneath Greenways." path="/opensource/">
+  <section class="opensource-hero">
+    <div class="opensource-hero__copy"><p class="eyebrow">The foundations beneath the studio</p><h1>Public works<br />for creative freedom.</h1><p>Greenways is not a single sealed platform. It is an assembly of independently useful projects that keep computation, hosting, identity and history inspectable.</p></div>
+    <div class="opensource-hero__mark"><MosaicMark label="Four open foundations" variant="opensource" /></div>
+  </section>
+  <section class="stack-section section-shell" aria-labelledby="stack-title">
+    <header class="section-heading"><div class="section-index">I · ARCHITECTURE</div><div><p class="eyebrow">A replaceable stack</p><h2 id="stack-title">Independent pieces.<br />Shared protocols.</h2></div><p>Each project can be used alone. Together they support creative work that can be executed, served, attributed and remembered without surrendering its history.</p></header>
+    <div class="stack-map">
+      <a href="/opensource/historian/"><span>Memory</span><strong>Historian</strong><small>Git-native lineage</small></a>
+      <i aria-hidden="true">↔</i>
+      <a href="/opensource/hestia/"><span>Sovereignty</span><strong>Hestia</strong><small>Identity · rights · ledger</small></a>
+      <i aria-hidden="true">↕</i>
+      <a href="/opensource/hoplite/"><span>Service</span><strong>Hoplite</strong><small>Nginx · Hara handlers</small></a>
+      <i aria-hidden="true">↕</i>
+      <a href="/opensource/hara/"><span>Language</span><strong>Hara</strong><small>HAL · runtimes · capabilities</small></a>
+    </div>
+  </section>
+  <section class="opensource-catalog section-shell"><div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} />)}</div></section>
+  <section class="contribute-panel"><p class="eyebrow">The commons grows by use</p><h2>Read it. Run it.<br />Question it. Improve it.</h2><p>Every foundation links to its source, current status and first command. Start with the piece that matters to your work.</p><a class="button button--gold" href="https://github.com/greenways-ai">Greenways on GitHub ↗</a></section>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CreativeLabs from "../components/CreativeLabs.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import BetaForm from "../components/BetaForm.astro";
+import MosaicMark from "../components/MosaicMark.astro";
+import { projects } from "../data/projects";
+---
+<BaseLayout title="Greenways" description="A collaborative creative and publishing environment for music, art, 3D work and open culture." path="/">
+  <section class="home-hero">
+    <img class="home-hero__image" src="/assets/greenways-hero.png" alt="A monumental future rotunda reached by a luminous mosaic causeway above the clouds" fetchpriority="high" />
+    <div class="home-hero__veil"></div>
+    <div class="home-hero__copy">
+      <p class="eyebrow"><span class="status-dot"></span> Collaborative creative environment · Public beta</p>
+      <h1>Make work that<br />outlives the tool.</h1>
+      <p>Compose music. Shape images and worlds. Work with people and machines. Publish with attribution intact—on open standards and open libraries.</p>
+      <div class="hero-actions"><a class="button button--gold" href="#early-access">Join early access</a><a class="button button--ghost" href="#studio">Explore the studio <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <div class="hero-inscription"><span>CREATE</span><i></i><span>COLLABORATE</span><i></i><span>ATTRIBUTE</span><i></i><span>PUBLISH</span></div>
+  </section>
+
+  <CreativeLabs />
+
+  <section class="principles-section section-shell" id="principles" aria-labelledby="principles-title">
+    <header class="section-heading"><div class="section-index">II · THE COMMON GROUND</div><div><p class="eyebrow">Open by construction</p><h2 id="principles-title">Freedom needs<br />a foundation.</h2></div><p>Your work should not disappear when a subscription ends or a company changes direction. Greenways keeps files legible, histories inspectable and infrastructure replaceable.</p></header>
+    <div class="principle-orbit">
+      <MosaicMark label="Open creative foundation" variant="greenways" />
+      <div class="orbit-core"><strong>YOUR WORK</strong><span>portable · attributable · durable</span></div>
+      <article><b>01</b><h3>Open formats</h3><p>HAL, HTA and deterministic packages are published as inspectable specifications.</p></article>
+      <article><b>02</b><h3>Open web</h3><p>HTML, Canvas, WebGL, Web Audio, WebRTC, WebAssembly and local browser storage.</p></article>
+      <article><b>03</b><h3>Open libraries</h3><p>Build on Hara, Three.js and interoperable tools. Export the work and take it elsewhere.</p></article>
+      <article><b>04</b><h3>Human provenance</h3><p>Credits, approvals and lineage are first-class records, not metadata swept aside.</p></article>
+    </div>
+  </section>
+
+  <section class="opensource-preview section-shell" aria-labelledby="opensource-title">
+    <header class="section-heading"><div class="section-index">III · THE FOUNDATIONS</div><div><p class="eyebrow">Built in public</p><h2 id="opensource-title">Four chambers.<br />One civic stack.</h2></div><p>The language, gateway, personal ledger and historical memory beneath Greenways are developed as independent public projects.</p></header>
+    <div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} />)}</div>
+    <a class="wide-link" href="/opensource/"><span>Read the open-source architecture</span><span aria-hidden="true">↗</span></a>
+  </section>
+
+  <BetaForm />
+</BaseLayout>

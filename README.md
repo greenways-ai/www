@@ -1,9 +1,16 @@
 # Greenways website
 
-Public landing page for Greenways.
+The public Greenways creative-publishing website at <https://greenways.ai>.
 
-The site is published with GitHub Pages at:
+```sh
+npm install
+npm run dev
+npm test
+npm run build
+```
 
-- https://greenways-ai.github.io/www/
+The site is an Astro static build deployed to Netlify. Cloudflare remains the
+authoritative DNS provider; Netlify-bound records are DNS-only.
 
-Changes merged to `main` are deployed automatically by `.github/workflows/pages.yml`.
+Website source and documentation are EPL-2.0. See `NOTICE.md` for visual asset,
+trademark, font, and third-party software notices.

@@ -1,0 +1,22 @@
+---
+import type { Project } from "../data/projects";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MosaicMark from "./MosaicMark.astro";
+const { project } = Astro.props as { project: Project };
+const isHara = project.slug === "hara";
+const image = isHara ? "https://hara-lang.org/og-hara-ribbon.jpg" : "/assets/greenways-hero.png";
+---
+<BaseLayout title={project.name} description={project.summary} path={`/opensource/${project.slug}/`} image={image} theme={project.slug} imageAlt={isHara ? "Hara infinite ribbon in cyan and violet" : `${project.name}: ${project.motif}`}>
+  <section class:list={["project-hero", `accent-${project.accent}`]}>
+    <div class="project-hero__art">
+      {isHara ? <img src="https://hara-lang.org/og-hara-ribbon.jpg" alt="Hara infinite ribbon in cyan and violet" /> : <MosaicMark label={project.name} variant={project.slug} />}
+    </div>
+    <div class="project-hero__copy"><p class="eyebrow">Open foundation · {project.epithet}</p><h1>{project.name}</h1><p class="lede">{project.summary}</p><div class="hero-actions"><a class="button button--gold" href={project.repository}>View source ↗</a>{project.homepage && <a class="button button--ghost" href={project.homepage}>Visit project ↗</a>}</div></div>
+    <div class="project-meta"><span>{project.status}</span><span>{project.license}</span><span>{project.motif}</span></div>
+  </section>
+  <section class="project-body section-shell">
+    <article class="project-proposition"><div class="section-index">I · PURPOSE</div><h2>Built to remain<br />in your hands.</h2><p>{project.note}</p></article>
+    <article class="architecture-panel"><div class="section-index">II · ARCHITECTURE</div><div class="architecture-flow">{project.architecture.map((item, index) => <><span>{item}</span>{index < project.architecture.length - 1 && <i aria-hidden="true">→</i>}</>)}</div></article>
+    <article class="capability-panel"><div><div class="section-index">III · CAPABILITIES</div><ul>{project.capabilities.map(item => <li>{item}</li>)}</ul></div><div><p class="eyebrow">Begin at the source</p><pre><code>{project.command}</code></pre><div class="source-links"><a href={project.repository}>GitHub ↗</a>{project.docs && <a href={project.docs}>Documentation ↗</a>}</div></div></article>
+  </section>
+</BaseLayout>

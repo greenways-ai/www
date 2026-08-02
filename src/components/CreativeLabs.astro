@@ -1,0 +1,175 @@
+<section class="studio-section section-shell" id="studio" aria-labelledby="studio-title">
+  <header class="section-heading">
+    <div class="section-index">I · THE STUDIO</div>
+    <div><p class="eyebrow">Made of the open web</p><h2 id="studio-title">One atelier.<br />Many forms.</h2></div>
+    <p>These are small, honest browser instruments—not screenshots. Touch sound, lay tesserae and turn an object in light. The full collaborative environment is available through the beta.</p>
+  </header>
+
+  <div class="lab-grid">
+    <article class="lab-card lab-card--music">
+      <header><span>01 / SOUND</span><strong>Web Audio</strong></header>
+      <div class="lab-stage"><canvas data-synth-canvas width="760" height="440" aria-label="Interactive mosaic music sequencer"></canvas><button class="lab-play" type="button" data-synth-play>Begin sound</button></div>
+      <div class="lab-controls"><label>Pulse <input data-synth-pulse type="range" min="72" max="168" value="108" /></label><output data-synth-status>Silent by design</output></div>
+    </article>
+
+    <article class="lab-card lab-card--art">
+      <header><span>02 / IMAGE</span><strong>Canvas 2D</strong></header>
+      <div class="lab-stage"><canvas data-mosaic-canvas width="760" height="440" aria-label="Interactive tessera mosaic painting canvas"></canvas><p class="stage-hint">Draw across the field</p></div>
+      <div class="lab-controls"><button type="button" data-mosaic-reset>Reset</button><button type="button" data-mosaic-save>Export PNG</button><output data-mosaic-status>Local canvas</output></div>
+    </article>
+
+    <article class="lab-card lab-card--object">
+      <header><span>03 / FORM</span><strong>Three.js · WebGL</strong></header>
+      <div class="lab-stage lab-stage--3d"><canvas data-object-canvas aria-label="Interactive rotating bronze sculptural object"></canvas><noscript><div class="stage-fallback">A bronze polyhedral relic rests inside a luminous circular sanctuary.</div></noscript></div>
+      <div class="lab-controls"><button type="button" data-object-light>Move the sun</button><span>Drag to orbit</span><output data-object-status>WebGL sculpture</output></div>
+    </article>
+  </div>
+
+  <article class="manifest-card" aria-labelledby="manifest-title">
+    <div><p class="eyebrow">A work is more than a file</p><h3 id="manifest-title">Give it memory.</h3><p>Title, creator, medium, license and content digest travel with the work. This local demonstration creates a portable JSON record; it does not publish or sign on your behalf.</p></div>
+    <form data-manifest-form>
+      <label><span>Title</span><input name="title" value="Mosaic study no. 1" /></label>
+      <label><span>Creator</span><input name="creator" value="Anonymous maker" /></label>
+      <label><span>Medium</span><select name="medium"><option>Generative image</option><option>Music</option><option>3D object</option></select></label>
+      <label><span>License</span><select name="license"><option>All rights reserved</option><option>CC BY 4.0</option><option>CC0 1.0</option></select></label>
+      <button class="button" type="submit">Build manifest</button>
+    </form>
+    <pre data-manifest-output aria-live="polite">{`{
+  "state": "waiting for a work"
+}`}</pre>
+  </article>
+</section>
+
+<script>
+  import * as THREE from "three";
+
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const synthCanvas = document.querySelector<HTMLCanvasElement>("[data-synth-canvas]");
+  const playButton = document.querySelector<HTMLButtonElement>("[data-synth-play]");
+  const pulse = document.querySelector<HTMLInputElement>("[data-synth-pulse]");
+  const synthStatus = document.querySelector<HTMLOutputElement>("[data-synth-status]");
+  let audioContext: AudioContext | null = null;
+  let timer = 0;
+  let step = 0;
+
+  function drawSequencer(active = -1) {
+    if (!synthCanvas) return;
+    const context = synthCanvas.getContext("2d");
+    if (!context) return;
+    const cols = 8, rows = 4, gap = 8;
+    const cellW = (synthCanvas.width - gap * (cols + 1)) / cols;
+    const cellH = (synthCanvas.height - gap * (rows + 1)) / rows;
+    context.fillStyle = "#07100e";
+    context.fillRect(0, 0, synthCanvas.width, synthCanvas.height);
+    for (let row = 0; row < rows; row += 1) for (let col = 0; col < cols; col += 1) {
+      const on = [0, 3, 5, 7].includes((col + row * 2) % 8);
+      context.fillStyle = col === active ? "#f0cf7a" : on ? ["#2e8b78", "#3f638e", "#a45a3d", "#7e6aa5"][row] : "#18231f";
+      context.fillRect(gap + col * (cellW + gap), gap + row * (cellH + gap), cellW, cellH);
+      context.strokeStyle = "rgba(239,220,174,.2)";
+      context.strokeRect(gap + col * (cellW + gap), gap + row * (cellH + gap), cellW, cellH);
+    }
+  }
+
+  drawSequencer();
+  playButton?.addEventListener("click", async () => {
+    if (audioContext) {
+      window.clearInterval(timer); await audioContext.close(); audioContext = null;
+      playButton.textContent = "Begin sound"; synthStatus!.textContent = "Silent by design"; drawSequencer(); return;
+    }
+    audioContext = new AudioContext(); await audioContext.resume();
+    const frequencies = [146.83, 196, 220, 293.66];
+    const tick = () => {
+      if (!audioContext) return;
+      drawSequencer(step);
+      frequencies.forEach((frequency, row) => {
+        if (![0, 3, 5, 7].includes((step + row * 2) % 8)) return;
+        const oscillator = audioContext!.createOscillator();
+        const gain = audioContext!.createGain();
+        oscillator.type = row % 2 ? "triangle" : "sine";
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(0.0001, audioContext!.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.08, audioContext!.currentTime + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioContext!.currentTime + 0.26);
+        oscillator.connect(gain).connect(audioContext!.destination);
+        oscillator.start(); oscillator.stop(audioContext!.currentTime + 0.28);
+      });
+      step = (step + 1) % 8;
+    };
+    tick();
+    timer = window.setInterval(tick, 60000 / Number(pulse?.value || 108) / 2);
+    playButton.textContent = "End sound"; synthStatus!.textContent = "Playing in this browser";
+  });
+  pulse?.addEventListener("input", () => {
+    if (audioContext && synthStatus) synthStatus.textContent = "New pulse applies when sound restarts";
+  });
+
+  const mosaicCanvas = document.querySelector<HTMLCanvasElement>("[data-mosaic-canvas]");
+  const mosaicContext = mosaicCanvas?.getContext("2d");
+  const palette = ["#e4d7b2", "#c79645", "#217365", "#274760", "#7a3e2f", "#111916"];
+  const tile = 22;
+  function resetMosaic() {
+    if (!mosaicCanvas || !mosaicContext) return;
+    mosaicContext.fillStyle = "#0b1512"; mosaicContext.fillRect(0, 0, mosaicCanvas.width, mosaicCanvas.height);
+    for (let y = 0; y < mosaicCanvas.height; y += tile) for (let x = 0; x < mosaicCanvas.width; x += tile) {
+      const wave = Math.sin(x * .018 + y * .012);
+      mosaicContext.fillStyle = palette[Math.abs(Math.floor(wave * 3 + y / tile)) % palette.length];
+      mosaicContext.fillRect(x + 2, y + 2, tile - 4, tile - 4);
+    }
+  }
+  resetMosaic();
+  let painting = false;
+  const paint = (event: PointerEvent) => {
+    if (!painting || !mosaicCanvas || !mosaicContext) return;
+    const rect = mosaicCanvas.getBoundingClientRect();
+    const x = Math.floor(((event.clientX - rect.left) / rect.width * mosaicCanvas.width) / tile) * tile;
+    const y = Math.floor(((event.clientY - rect.top) / rect.height * mosaicCanvas.height) / tile) * tile;
+    mosaicContext.fillStyle = palette[Math.floor(Math.random() * palette.length)];
+    mosaicContext.fillRect(x + 2, y + 2, tile - 4, tile - 4);
+  };
+  mosaicCanvas?.addEventListener("pointerdown", (event) => { painting = true; mosaicCanvas.setPointerCapture(event.pointerId); paint(event); });
+  mosaicCanvas?.addEventListener("pointermove", paint);
+  mosaicCanvas?.addEventListener("pointerup", () => painting = false);
+  document.querySelector("[data-mosaic-reset]")?.addEventListener("click", resetMosaic);
+  document.querySelector("[data-mosaic-save]")?.addEventListener("click", () => {
+    if (!mosaicCanvas) return;
+    const link = document.createElement("a"); link.download = "greenways-mosaic.png"; link.href = mosaicCanvas.toDataURL("image/png"); link.click();
+  });
+
+  const objectCanvas = document.querySelector<HTMLCanvasElement>("[data-object-canvas]");
+  if (objectCanvas) {
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 1, .1, 100); camera.position.set(0, .4, 5);
+      const renderer = new THREE.WebGLRenderer({ canvas: objectCanvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      const geometry = new THREE.IcosahedronGeometry(1.35, 1);
+      const material = new THREE.MeshStandardMaterial({ color: 0x8d6238, metalness: .78, roughness: .28, flatShading: true });
+      const relic = new THREE.Mesh(geometry, material); scene.add(relic);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(1.9, .035, 10, 96), new THREE.MeshBasicMaterial({ color: 0x5bb5a0 })); ring.rotation.x = Math.PI / 2.25; scene.add(ring);
+      const key = new THREE.PointLight(0xffd9a0, 42); key.position.set(3, 3, 4); scene.add(key);
+      scene.add(new THREE.AmbientLight(0x4a6b76, 1.4));
+      let dragging = false, previous = 0;
+      objectCanvas.addEventListener("pointerdown", event => { dragging = true; previous = event.clientX; objectCanvas.setPointerCapture(event.pointerId); });
+      objectCanvas.addEventListener("pointermove", event => { if (dragging) { relic.rotation.y += (event.clientX - previous) * .012; previous = event.clientX; } });
+      objectCanvas.addEventListener("pointerup", () => dragging = false);
+      document.querySelector("[data-object-light]")?.addEventListener("click", () => { const x = key.position.x; key.position.x = key.position.z; key.position.z = -x; });
+      const resize = () => { const box = objectCanvas.getBoundingClientRect(); renderer.setSize(box.width, box.height, false); camera.aspect = box.width / Math.max(box.height, 1); camera.updateProjectionMatrix(); };
+      const render = () => { if (!dragging && !reduceMotion) relic.rotation.y += .0025; renderer.render(scene, camera); requestAnimationFrame(render); };
+      resize(); new ResizeObserver(resize).observe(objectCanvas); render();
+    } catch { objectCanvas.replaceWith(Object.assign(document.createElement("div"), { className: "stage-fallback", textContent: "A bronze polyhedral relic rests inside a luminous circular sanctuary." })); }
+  }
+
+  const manifestForm = document.querySelector<HTMLFormElement>("[data-manifest-form]");
+  const manifestOutput = document.querySelector<HTMLElement>("[data-manifest-output]");
+  manifestForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const values = Object.fromEntries(new FormData(manifestForm));
+    const payload = { type: "greenways/artifact-preview", version: 1, ...values, created: new Date().toISOString() };
+    const bytes = new TextEncoder().encode(JSON.stringify(payload));
+    const digest = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(value => value.toString(16).padStart(2, "0")).join("");
+    const record = { ...payload, digest: `sha256:${digest}` };
+    if (manifestOutput) manifestOutput.textContent = JSON.stringify(record, null, 2);
+    const blob = new Blob([JSON.stringify(record, null, 2)], { type: "application/json" });
+    const link = document.createElement("a"); link.download = "greenways-artifact-preview.json"; link.href = URL.createObjectURL(blob); link.click(); URL.revokeObjectURL(link.href);
+  });
+</script>

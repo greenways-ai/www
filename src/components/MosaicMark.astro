@@ -1,0 +1,7 @@
+---
+type Props = { label?: string; variant?: string };
+const { label = "Greenways", variant = "greenways" } = Astro.props;
+---
+<div class:list={["mosaic-mark", `mosaic-mark--${variant}`]} role="img" aria-label={`${label} mosaic emblem`}>
+  {Array.from({ length: 49 }, (_, index) => <i style={`--i:${index}`} />)}
+</div>
