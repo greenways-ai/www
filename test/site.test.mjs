@@ -14,6 +14,9 @@ test("the site uses the canonical apex and selected positioning", async () => {
   assert.match(config, /site: "https:\/\/greenways\.ai"/);
   assert.match(home, /Make work that/);
   assert.match(home, /outlives the tool/);
+  assert.match(home, /growing into a connected world/);
+  assert.match(home, /Independent foundations/);
+  assert.match(home, /One connected world/);
   assert.match(layout, />GREENWAYS</);
   assert.doesNotMatch(layout, /www\.greenways\.ai/);
 });
