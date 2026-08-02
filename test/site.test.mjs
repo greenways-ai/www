@@ -46,3 +46,22 @@ test("the generated hero artwork is present", async () => {
   const image = await stat(new URL("public/assets/greenways-hero.png", root));
   assert.ok(image.size > 100_000);
 });
+
+test("WhatsApp Open Graph cards declare 1200 by 630 images", async () => {
+  const [layout, openSource, project] = await Promise.all([
+    source("src/layouts/BaseLayout.astro"),
+    source("src/pages/opensource/index.astro"),
+    source("src/components/ProjectPage.astro")
+  ]);
+  assert.match(layout, /og:image:secure_url/);
+  assert.match(layout, /og:image:width" content="1200"/);
+  assert.match(layout, /og:image:height" content="630"/);
+  assert.match(layout, /twitter:image:alt/);
+  assert.match(layout, /\/assets\/og-greenways\.png/);
+  assert.match(openSource, /\/assets\/og-opensource\.png/);
+  assert.match(project, /\/assets\/og-opensource\.png/);
+  for (const name of ["og-greenways.png", "og-opensource.png"]) {
+    const image = await stat(new URL(`public/assets/${name}`, root));
+    assert.ok(image.size > 100_000);
+  }
+});

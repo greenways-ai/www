@@ -4,9 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MosaicMark from "./MosaicMark.astro";
 const { project } = Astro.props as { project: Project };
 const isHara = project.slug === "hara";
-const image = isHara ? "https://hara-lang.org/og-hara-ribbon.jpg" : "/assets/greenways-hero.png";
+const image = "/assets/og-opensource.png";
 ---
-<BaseLayout title={project.name} description={project.summary} path={`/opensource/${project.slug}/`} image={image} theme={project.slug} imageAlt={isHara ? "Hara infinite ribbon in cyan and violet" : `${project.name}: ${project.motif}`}>
+<BaseLayout title={project.name} description={project.summary} path={`/opensource/${project.slug}/`} image={image} theme={project.slug} imageAlt={`${project.name}, one of four Greenways open-source foundations`}>
   <section class:list={["project-hero", `accent-${project.accent}`]}>
     <div class="project-hero__art">
       {isHara ? <img src="https://hara-lang.org/og-hara-ribbon.jpg" alt="Hara infinite ribbon in cyan and violet" /> : <MosaicMark label={project.name} variant={project.slug} />}
