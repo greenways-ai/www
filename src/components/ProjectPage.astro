@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MosaicMark from "./MosaicMark.astro";
 const { project } = Astro.props as { project: Project };
 const isHara = project.slug === "hara";
-const image = "/assets/og-opensource.png";
+const image = "/assets/og-opensource-whatsapp.jpg";
 ---
 <BaseLayout title={project.name} description={project.summary} path={`/opensource/${project.slug}/`} image={image} theme={project.slug} imageAlt={`${project.name}, one of four Greenways open-source foundations`}>
   <section class:list={["project-hero", `accent-${project.accent}`]}>

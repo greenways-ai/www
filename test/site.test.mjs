@@ -57,11 +57,13 @@ test("WhatsApp Open Graph cards declare 1200 by 630 images", async () => {
   assert.match(layout, /og:image:width" content="1200"/);
   assert.match(layout, /og:image:height" content="630"/);
   assert.match(layout, /twitter:image:alt/);
-  assert.match(layout, /\/assets\/og-greenways\.png/);
-  assert.match(openSource, /\/assets\/og-opensource\.png/);
-  assert.match(project, /\/assets\/og-opensource\.png/);
-  for (const name of ["og-greenways.png", "og-opensource.png"]) {
+  assert.match(layout, /og:image:type" content="image\/jpeg"/);
+  assert.match(layout, /\/assets\/og-greenways-whatsapp\.jpg/);
+  assert.match(openSource, /\/assets\/og-opensource-whatsapp\.jpg/);
+  assert.match(project, /\/assets\/og-opensource-whatsapp\.jpg/);
+  for (const name of ["og-greenways-whatsapp.jpg", "og-opensource-whatsapp.jpg"]) {
     const image = await stat(new URL(`public/assets/${name}`, root));
     assert.ok(image.size > 100_000);
+    assert.ok(image.size < 320_000);
   }
 });
