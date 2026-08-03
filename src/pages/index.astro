@@ -6,10 +6,11 @@ import BetaForm from "../components/BetaForm.astro";
 import MosaicMark from "../components/MosaicMark.astro";
 import ThemedArtwork from "@greenways-ai/visual-language/ThemedArtwork.astro";
 import { projects } from "../data/projects";
+import CosmicCatalogue from "../components/CosmicCatalogue.astro";
 ---
 <BaseLayout title="Greenways" description="A high-trust world for creative work, built around collaborative publishing, attribution and history." path="/">
   <section class="home-hero">
-    <ThemedArtwork class="home-hero__image" light="/assets/greenways-city-day.webp" dark="/assets/greenways-city-night.webp" lightAlt="People creating, learning and maintaining public systems in a sunlit digital mosaic city" darkAlt="Operator teams keeping the same digital mosaic city and its luminous civic paths running at night" position="center" />
+    <ThemedArtwork class="home-hero__image" light="/artwork/greenways/peacock-garden-day.svg" dark="/artwork/greenways/peacock-garden-night.svg" lightMobile="/artwork/greenways/peacock-garden-day-mobile.svg" darkMobile="/artwork/greenways/peacock-garden-night-mobile.svg" lightAlt="A peacock in a jewel-toned celestial mosaic garden by day" darkAlt="The peacock in the same luminous cosmic garden at night" position="center" />
     <div class="home-hero__veil"></div>
     <div class="home-hero__copy">
       <p class="eyebrow"><span class="status-dot"></span> A high-trust world for creative work · Public beta</p>
@@ -40,5 +41,6 @@ import { projects } from "../data/projects";
     <a class="wide-link" href="/opensource/"><span>Read the open-source architecture</span><span aria-hidden="true">↗</span></a>
   </section>
 
+  <CosmicCatalogue />
   <BetaForm />
 </BaseLayout>

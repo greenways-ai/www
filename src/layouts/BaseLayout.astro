@@ -5,7 +5,7 @@ import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@greenways-ai/visual-language/theme.css";
-import ThemeToggle from "@greenways-ai/visual-language/ThemeToggle.astro";
+import SharedHeader from "@greenways-ai/visual-language/SharedHeader.astro";
 import "../styles/global.css";
 
 type Props = {
@@ -71,19 +71,7 @@ const structuredData = {
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
-    <header class="site-header">
-      <a class="wordmark" href="/" aria-label="Greenways home">
-        <img class="site-sigil" src="/sigil.svg" width="32" height="32" alt="Greenways wayfinder sigil" />
-        <span>GREENWAYS</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="/#studio">Studio</a>
-        <a href="/opensource/">Open source</a>
-        <a href="/#principles">Principles</a>
-        <a class="nav-cta" href="/#early-access">Early access</a>
-        <ThemeToggle />
-      </nav>
-    </header>
+    <SharedHeader project="greenways" title="Greenways" homeHref="/" searchBase="" nav={[{label:"Studio",href:"/#studio"},{label:"Open source",href:"/opensource/"},{label:"Principles",href:"/#principles"}]} githubHref="https://github.com/greenways-ai" cta={{label:"Early access",href:"/#early-access"}} />
     <main id="content"><slot /></main>
     <footer class="site-footer">
       <div><span class="wordmark-text">GREENWAYS</span><p>Create together.</p></div>
@@ -94,7 +82,7 @@ const structuredData = {
         <a href="/privacy/">Privacy</a>
         <a href="mailto:hello@greenways.ai">hello@greenways.ai</a>
       </nav>
-      <small>© 2026 Greenways Pty Ltd. Code under EPL-2.0. Greenways marks and artwork reserved.</small>
+      <small>© 2026 Greenways Pty Ltd. Code under Apache-2.0. Greenways marks and artwork reserved.</small>
     </footer>
   </body>
 </html>

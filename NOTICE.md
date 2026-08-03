@@ -2,7 +2,7 @@
 
 Copyright 2026 Greenways Pty Ltd.
 
-The website source and documentation are available under EPL-2.0. The
+The website source and documentation are available under Apache-2.0. The
 GREENWAYS name, wordmark, project emblems, generated hero artwork, and other
 original visual assets under `public/assets/` are not licensed for reuse by
 the EPL and remain copyright Greenways Pty Ltd unless a file says otherwise.
