@@ -1,5 +1,5 @@
 export type Project = {
-  slug: "hara" | "hoplite" | "hestia" | "historian";
+  slug: "hara" | "hoplite" | "hestia" | "historia";
   name: string;
   epithet: string;
   summary: string;
@@ -65,19 +65,19 @@ export const projects: Project[] = [
     note: "Greenways defines protocols and accredits independent authorities. A Hestia node remains independently run; Greenways cannot recover a key alone."
   },
   {
-    slug: "historian",
-    name: "Historian",
+    slug: "historia",
+    name: "Historia",
     epithet: "The memory of change",
     summary: "Git-native temporal code indexing, lineage, history and structural similarity with deterministic local retrieval.",
     status: "Active development",
     license: "Apache-2.0",
-    repository: "https://github.com/greenways-ai/historian",
+    repository: "https://github.com/greenways-ai/historia",
     motif: "Archive and strata",
     accent: "lapis",
     architecture: ["Git commit DAG", "Language analyzers", "Content addresses", "SQLite history"],
     capabilities: ["Incremental indexing", "Symbol lineage", "Structural similarity", "No LLM required"],
     command: "npm install -g @greenways-ai/historian\ngw-historian doctor\ngw-historian init",
-    note: "Git remains the source of truth. Historian analyzes changed blobs once and keeps one local SQLite history database per repository."
+    note: "Git remains the source of truth. Historia analyzes changed blobs once and keeps one local SQLite history database per repository."
   }
 ];
 

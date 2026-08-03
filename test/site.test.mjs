@@ -24,7 +24,7 @@ test("the site uses the canonical apex and selected positioning", async () => {
 
 test("all four open foundations have dedicated routes", async () => {
   const projects = await source("src/data/projects.ts");
-  for (const slug of ["hara", "hoplite", "hestia", "historian"]) {
+  for (const slug of ["hara", "hoplite", "hestia", "historia"]) {
     assert.match(projects, new RegExp(`slug: "${slug}"`));
     const route = await source(`src/pages/opensource/${slug}.astro`);
     assert.match(route, new RegExp(`projectBySlug\\.${slug}`));
