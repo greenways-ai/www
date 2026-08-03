@@ -49,7 +49,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--ink); }
 body { margin: 0; overflow-x: hidden; color: var(--stone); background: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.65; }
-body::before { content: ""; position: fixed; z-index: -1; inset: 0; pointer-events: none; opacity: .4; background: radial-gradient(circle at 15% 10%, rgba(47,146,127,.13), transparent 25rem), radial-gradient(circle at 85% 70%, rgba(78,114,163,.1), transparent 30rem), repeating-linear-gradient(90deg, transparent 0 79px, rgba(255,255,255,.018) 80px); }
+body::before { content: ""; position: fixed; z-index: -1; inset: 0; pointer-events: none; opacity: .28; background: conic-gradient(from 90deg, rgba(215,185,108,.045) 25%, transparent 0 50%, rgba(255,255,255,.018) 0 75%, transparent 0) 0 0 / 18px 18px; }
 a { color: inherit; }
 button, input, select { font: inherit; }
 button, .button { cursor: pointer; }
@@ -84,16 +84,16 @@ p { margin: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
 
 .home-hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: #091117; }
-.home-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; background-position: 58% center; animation: hero-breathe 18s ease-in-out infinite alternate; }
+.home-hero__image { position: absolute; inset: -2px; display: block; width: calc(100% + 4px); height: calc(100% + 4px); object-fit: cover; object-position: 58% center; animation: hero-breathe 18s ease-in-out infinite alternate; }
 .home-hero__veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,9,10,.93) 0%, rgba(3,9,10,.66) 40%, rgba(3,9,10,.08) 72%), linear-gradient(0deg, rgba(3,9,10,.86), transparent 44%); }
 .home-hero__copy { position: relative; z-index: 2; width: min(calc(100% - 48px), var(--page)); margin: 0 auto; padding: 180px 0 140px; }
 .home-hero__copy h1 { max-width: 980px; color: var(--stone-bright); text-shadow: 0 3px 30px rgba(0,0,0,.4); }
 .home-hero__copy > p:not(.eyebrow) { max-width: 670px; margin: 2rem 0; color: rgba(255,249,233,.8); font-size: clamp(1.05rem, 2vw, 1.35rem); }
-.status-dot { width: 7px; height: 7px; display: inline-block; margin-right: .6rem; border-radius: 50%; background: #8ce4b4; box-shadow: 0 0 14px #8ce4b4; }
+.status-dot { width: 7px; height: 7px; display: inline-block; margin-right: .6rem; background: var(--gold); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); transform: rotate(45deg); }
 .hero-inscription { position: absolute; z-index: 3; right: max(24px, calc((100% - var(--page)) / 2)); bottom: 35px; display: flex; align-items: center; gap: .8rem; color: rgba(255,249,233,.56); font-family: var(--mono); font-size: .58rem; letter-spacing: .15em; }
 .hero-inscription i { width: 22px; height: 1px; background: currentColor; }
 
-:root[data-theme="light"] body::before { opacity: .55; background: radial-gradient(circle at 15% 10%, rgba(47,146,127,.1), transparent 25rem), radial-gradient(circle at 85% 70%, rgba(78,114,163,.07), transparent 30rem), repeating-linear-gradient(90deg, transparent 0 79px, rgba(23,35,31,.025) 80px); }
+:root[data-theme="light"] body::before { opacity: .34; background: conic-gradient(from 90deg, rgba(157,104,47,.04) 25%, transparent 0 50%, rgba(23,35,31,.018) 0 75%, transparent 0) 0 0 / 18px 18px; }
 :root[data-theme="light"] .site-header { border-color: rgba(23,35,31,.24); }
 :root[data-theme="light"] .site-header nav a:not(.nav-cta) { color: rgba(23,35,31,.76); }
 :root[data-theme="light"] .nav-cta { border-color: rgba(23,35,31,.4); }
