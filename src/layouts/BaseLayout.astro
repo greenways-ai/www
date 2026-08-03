@@ -5,7 +5,6 @@ import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@greenways-ai/visual-language/theme.css";
-import MosaicLogo from "@greenways-ai/visual-language/MosaicLogo.astro";
 import ThemeToggle from "@greenways-ai/visual-language/ThemeToggle.astro";
 import "../styles/global.css";
 
@@ -50,7 +49,7 @@ const structuredData = {
     <meta name="theme-color" content="#0b1513" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/sigil.svg" type="image/svg+xml" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -74,7 +73,7 @@ const structuredData = {
     <a class="skip-link" href="#content">Skip to content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Greenways home">
-        <MosaicLogo project="greenways" label="Greenways" />
+        <img class="site-sigil" src="/sigil.svg" width="32" height="32" alt="Greenways wayfinder sigil" />
         <span>GREENWAYS</span>
       </a>
       <nav aria-label="Primary navigation">

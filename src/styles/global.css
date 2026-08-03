@@ -67,6 +67,7 @@ p { margin: 0; }
 .site-header { position: absolute; z-index: 20; top: 0; left: 50%; width: min(calc(100% - 48px), var(--page)); height: 92px; display: flex; align-items: center; justify-content: space-between; transform: translateX(-50%); border-bottom: 1px solid rgba(255,255,255,.22); }
 .wordmark { display: flex; align-items: center; gap: .8rem; color: var(--stone-bright); font-family: var(--display); font-size: .92rem; letter-spacing: .2em; text-decoration: none; }
 .wordmark .gw-mosaic-logo { width: 32px; flex: 0 0 auto; }
+.wordmark .site-sigil { width: 32px; height: 32px; flex: 0 0 auto; border-radius: 5px; }
 .site-header nav { display: flex; align-items: center; gap: clamp(.6rem, 2.4vw, 2.5rem); font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .site-header nav a { text-decoration: none; }
 .site-header nav a:not(.nav-cta) { color: rgba(255,249,233,.74); }
@@ -163,6 +164,7 @@ p { margin: 0; }
 .project-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 80% 15%, rgba(47,146,127,.15), transparent 35%); }
 .project-number { position: absolute; top: 1.5rem; right: 1.5rem; color: var(--stone-dim); font: .65rem var(--mono); }
 .project-card .mosaic-mark { width: 150px; margin: 1rem auto; }
+.project-card .mosaic-sigil { width: 150px; height: 150px; display: block; margin: 1rem auto; }
 .project-card h3 { margin: .5rem 0 1rem; font-size: 3.5rem; }
 .project-card > div > p:last-child { max-width: 500px; color: var(--stone-dim); }
 .project-card dl { display: flex; gap: 2rem; margin: 0; padding-top: 1.2rem; border-top: 1px solid var(--line); }
@@ -173,6 +175,7 @@ p { margin: 0; }
 .wide-link { margin-top: 18px; padding: 1.4rem; display: flex; justify-content: space-between; border: 1px solid var(--line); }
 
 .mosaic-mark { aspect-ratio: 1; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; transform: rotate(45deg); }
+.mosaic-sigil { aspect-ratio: 1; object-fit: contain; }
 .mosaic-mark i { display: block; background: color-mix(in srgb, var(--gold) calc(25% + (var(--i) % 7) * 8%), var(--verdigris)); border: 1px solid rgba(255,255,255,.12); animation: tessera 6s calc(var(--i) * -70ms) ease-in-out infinite; }
 .mosaic-mark--hara i { background: color-mix(in srgb, #43f1e0 calc(30% + (var(--i) % 7) * 8%), #8a35ff); }
 .mosaic-mark--hoplite i { background: color-mix(in srgb, #d6a45d calc(35% + (var(--i) % 7) * 7%), #493427); }

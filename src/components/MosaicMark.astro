@@ -1,7 +1,7 @@
 ---
 type Props = { label?: string; variant?: string };
 const { label = "Greenways", variant = "greenways" } = Astro.props;
+const sigils: Record<string, string> = { greenways: "/sigil.svg", hestia: "/sigils/hestia.svg", hoplite: "/sigils/hoplite.svg", historian: "/sigils/historia.svg", historia: "/sigils/historia.svg" };
+const sigil = sigils[variant];
 ---
-<div class:list={["mosaic-mark", `mosaic-mark--${variant}`]} role="img" aria-label={`${label} mosaic emblem`}>
-  {Array.from({ length: 49 }, (_, index) => <i style={`--i:${index}`} />)}
-</div>
+{sigil ? <img class:list={["mosaic-sigil", `mosaic-sigil--${variant}`]} src={sigil} alt={`${label} mosaic sigil`} /> : <div class:list={["mosaic-mark", `mosaic-mark--${variant}`]} role="img" aria-label={`${label} mosaic emblem`}>{Array.from({ length: 49 }, (_, index) => <i style={`--i:${index}`} />)}</div>}
