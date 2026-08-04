@@ -1,26 +1,57 @@
-<section class="beta-panel" id="early-access" aria-labelledby="beta-title">
-  <div class="section-index">IV · EARLY ACCESS</div>
-  <div class="beta-copy">
-    <p class="eyebrow">Public beta</p>
-    <h2 id="beta-title">Enter the first circle.</h2>
-    <p>Tell us what you make. We are inviting musicians, artists, 3D makers, publishers and open-source builders in small groups.</p>
+<section class="builder-access" id="early-access" aria-labelledby="builder-access-title">
+  <div class="builder-access__copy">
+    <p class="world-kicker">START BUILDING</p>
+    <h2 id="builder-access-title">Build your first experience.</h2>
+    <p>
+      Tell us what you want to make. We are opening Greenways to musicians,
+      artists, world builders, publishers and people creating new tools.
+    </p>
   </div>
-  <form class="beta-form" name="beta-access" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+
+  <form
+    class="builder-access__form"
+    name="beta-access"
+    method="POST"
+    action="/thank-you/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+  >
     <input type="hidden" name="form-name" value="beta-access" />
     <input type="hidden" name="subject" value="Greenways beta access request" />
     <p class="honeypot"><label>Leave this empty <input name="bot-field" /></label></p>
-    <label class="email-field"><span>Email address</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" required /></label>
+
+    <label>
+      <span>Email address</span>
+      <input
+        type="email"
+        name="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        required
+      />
+    </label>
+
     <fieldset>
-      <legend>What do you make? <span>Optional</span></legend>
-      <div class="interest-grid">
+      <legend>What are you building? <span>Optional</span></legend>
+      <div class="builder-access__interests">
         <label><input type="checkbox" name="interest_music" value="yes" /><span>Music</span></label>
-        <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>Visual art</span></label>
-        <label><input type="checkbox" name="interest_3d" value="yes" /><span>3D</span></label>
+        <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>Visuals</span></label>
+        <label><input type="checkbox" name="interest_3d" value="yes" /><span>3D and worlds</span></label>
         <label><input type="checkbox" name="interest_publishing" value="yes" /><span>Publishing</span></label>
-        <label><input type="checkbox" name="interest_open_source" value="yes" /><span>Open source</span></label>
+        <label><input type="checkbox" name="interest_open_source" value="yes" /><span>Open tools</span></label>
       </div>
     </fieldset>
-    <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Greenways may use these details to contact me about beta access. See the <a href="/privacy/">privacy note</a>.</span></label>
-    <button class="button button--gold" type="submit">Request an invitation <span aria-hidden="true">↗</span></button>
+
+    <label class="builder-access__consent">
+      <input type="checkbox" name="consent" value="yes" required />
+      <span>
+        Greenways may use these details to contact me about early access. See
+        the <a href="/privacy/">privacy note</a>.
+      </span>
+    </label>
+
+    <button class="world-button world-button--primary" type="submit">
+      Join early access <span aria-hidden="true">→</span>
+    </button>
   </form>
 </section>
