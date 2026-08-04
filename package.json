@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
+    "@fontsource/bodoni-moda": "^5.2.7",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/manrope": "^5.2.7",
-    "@fontsource/marcellus": "^5.2.6",
-    "@greenways-ai/visual-language": "github:greenways-ai/visual-language#v4.4.1",
+    "@greenways-ai/visual-language": "github:greenways-ai/visual-language#793a4239ce4d8bb3388e62e263a084bf6f9dd308",
     "astro": "^7.1.6",
     "three": "^0.179.1"
   },
