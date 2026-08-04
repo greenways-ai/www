@@ -2,12 +2,18 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import MosaicMark from "../../components/MosaicMark.astro";
+import ThemedArtwork from "@greenways-ai/visual-language/ThemedArtwork.astro";
 import { projects } from "../../data/projects";
 ---
 <BaseLayout title="Open source" description="The open language, gateway, personal ledger and historical memory beneath Greenways." path="/opensource/" image="https://opensource.greenways.ai/visual-language/assets/og-greenways.png" imageAlt="Four luminous civic chambers surrounding the Greenways open-source forum">
   <section class="opensource-hero">
     <div class="opensource-hero__copy"><p class="eyebrow">The foundations beneath the studio</p><h1>Public works<br />for creative freedom.</h1><p>Greenways is not a single sealed platform. It is an assembly of independently useful projects that keep computation, hosting, identity and history inspectable.</p></div>
     <div class="opensource-hero__mark"><MosaicMark label="Four open foundations" variant="opensource" /></div>
+  </section>
+  <section class="charter-band" aria-labelledby="charter-title">
+    <ThemedArtwork class="charter-band__image" light="https://opensource.greenways.ai/visual-language/artwork/www/world-confluence-day.webp" dark="https://opensource.greenways.ai/visual-language/artwork/www/world-confluence-night.webp" lightAlt="The Greenways world confluence garden city by day" darkAlt="The world confluence garden city illuminated at night" position="center" />
+    <div class="charter-band__veil" aria-hidden="true"></div>
+    <div class="charter-band__copy"><p class="eyebrow">Greenways Open Source Charter</p><h2 id="charter-title">Public infrastructure,<br />precisely stewarded.</h2><a class="button button--gold" href="https://opensource.greenways.ai/open-source/">Read the charter ↗</a></div>
   </section>
   <section class="stack-section section-shell" aria-labelledby="stack-title">
     <header class="section-heading"><div class="section-index">I · ARCHITECTURE</div><div><p class="eyebrow">A replaceable stack</p><h2 id="stack-title">Independent pieces.<br />Shared protocols.</h2></div><p>Each project can be used alone. Together they support creative work that can be executed, served, attributed and remembered without surrendering its history.</p></header>
