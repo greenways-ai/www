@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/vendor-hara-live.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/vendor-hara-live.mjs",
     "build": "astro check && astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",

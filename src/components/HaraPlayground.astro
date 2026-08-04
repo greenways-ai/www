@@ -1,0 +1,55 @@
+---
+import "../../vendor/hara-live/style.css";
+---
+
+<article class="lab-card hara-playground" aria-label="Hara live playground">
+  <header><span>HARA · THE LIVING LANGUAGE</span><strong>Browser WASM kernel</strong></header>
+  <div class="hara-playground-mount" data-hara-live-mount></div>
+</article>
+
+<script>
+  import { mountLiveCard } from "../../vendor/hara-live/live-card.js";
+  import { LIVE_SNIPPETS } from "../../vendor/hara-live/snippets.js";
+
+  const mount = document.querySelector("[data-hara-live-mount]");
+  if (mount) {
+    const ids = new Set(["first-eval", "collections", "canvas-pong"]);
+    mountLiveCard(mount as HTMLElement, {
+      snippets: LIVE_SNIPPETS.filter((snippet) => ids.has(snippet.id)),
+      activeSnippet: "first-eval",
+      runtimeBase: "/hara-runtime",
+      docsAssetsBase: "/hara-runtime",
+      kernelModuleUrl: "/hara-runtime/kernel.js"
+    });
+  }
+</script>
+
+<style>
+  /* Card chrome: square corners and site hairlines to match .lab-card. */
+  .hara-playground-mount :global(.hara-live-card) {
+    border: 0;
+    border-radius: 0;
+  }
+
+  /* Theme bridge: the card's --hara-live-* properties bound to site tokens.
+     The editor surface stays dark in both themes, like .manifest-card pre. */
+  .hara-playground-mount {
+    --hara-live-bg: #07100e;
+    --hara-live-panel: #0a1215;
+    --hara-live-ink: var(--stone);
+    --hara-live-muted: var(--stone-dim);
+    --hara-live-accent: var(--gold-bright);
+    --hara-live-accent-2: var(--violet);
+    --hara-live-border: var(--line);
+    --hara-live-error: var(--ember);
+    --hara-live-mono-font: var(--mono);
+  }
+
+  :global(:root[data-theme="light"]) .hara-playground-mount {
+    --hara-live-bg: #17231f;
+    --hara-live-panel: #101b1a;
+    --hara-live-ink: #e7dfca;
+    --hara-live-muted: #b4ad99;
+    --hara-live-accent: #f0d893;
+  }
+</style>

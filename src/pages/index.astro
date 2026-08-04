@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CreativeLabs from "../components/CreativeLabs.astro";
+import HaraPlayground from "../components/HaraPlayground.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import BetaForm from "../components/BetaForm.astro";
 import MosaicMark from "../components/MosaicMark.astro";
@@ -22,6 +23,15 @@ import CosmicCatalogue from "../components/CosmicCatalogue.astro";
   </section>
 
   <CreativeLabs />
+
+  <section class="hara-section section-shell" id="language" aria-labelledby="language-title">
+    <header class="section-heading">
+      <div class="section-index">INTERLUDE · THE LANGUAGE</div>
+      <div><p class="eyebrow">The living language, running here</p><h2 id="language-title">The world has<br />a language.</h2></div>
+      <p>Hara is the language kernel in the open-source foundations below—and its WASM runtime boots right in this page. Press Run to evaluate HAL in your browser; nothing is installed and nothing leaves the page.</p>
+    </header>
+    <HaraPlayground />
+  </section>
 
   <section class="principles-section section-shell" id="principles" aria-labelledby="principles-title">
     <header class="section-heading"><div class="section-index">II · THE COMMON GROUND</div><div><p class="eyebrow">Open by construction</p><h2 id="principles-title">A world needs<br />common ground.</h2></div><p>Greenways is being designed so each place can preserve its own identity, memory and rules while remaining connected. Common formats and protocols let work travel without making the whole world depend on one machine or institution.</p></header>
