@@ -1,56 +1,428 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CreativeLabs from "../components/CreativeLabs.astro";
-import HaraPlayground from "../components/HaraPlayground.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import BetaForm from "../components/BetaForm.astro";
-import MosaicMark from "../components/MosaicMark.astro";
-import ThemedArtwork from "@greenways-ai/visual-language/ThemedArtwork.astro";
-import { projects } from "../data/projects";
-import CosmicCatalogue from "../components/CosmicCatalogue.astro";
+import "../styles/world-home.css";
+
+const slides = [
+  {
+    title: "Celestial Promenade",
+    light: "/artwork/greenways/celestial-promenade-day.webp",
+    dark: "/artwork/greenways/celestial-promenade-night.webp",
+    lightMobile: "/artwork/greenways/celestial-promenade-day-mobile.webp",
+    darkMobile: "/artwork/greenways/celestial-promenade-night-mobile.webp"
+  },
+  {
+    title: "Peacock Garden",
+    light: "/artwork/greenways/peacock-garden-day.webp",
+    dark: "/artwork/greenways/peacock-garden-night.webp",
+    lightMobile: "/artwork/greenways/peacock-garden-day-mobile.webp",
+    darkMobile: "/artwork/greenways/peacock-garden-night-mobile.webp"
+  },
+  {
+    title: "Jeweled Archipelago",
+    light: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day.webp",
+    dark: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night.webp",
+    lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day-mobile.webp",
+    darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night-mobile.webp"
+  },
+  {
+    title: "Solar Steppe Observatories",
+    light: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day.webp",
+    dark: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night.webp",
+    lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day-mobile.webp",
+    darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night-mobile.webp"
+  },
+  {
+    title: "Aurora Conservatory Belt",
+    light: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day.webp",
+    dark: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-night.webp",
+    lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day-mobile.webp",
+    darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-night-mobile.webp"
+  }
+];
+
+const artworkStyle = (slide: (typeof slides)[number]) =>
+  `--gw-art-light:url('${slide.light}');--gw-art-dark:url('${slide.dark}');--gw-art-light-mobile:url('${slide.lightMobile}');--gw-art-dark-mobile:url('${slide.darkMobile}')`;
 ---
-<BaseLayout title="Greenways" description="A high-trust world for creative work, built around collaborative publishing, attribution and history." path="/">
-  <section class="home-hero">
-    <ThemedArtwork class="home-hero__image" light="https://oss.greenways.ai/visual-language/artwork/www/world-confluence-day.webp" dark="https://oss.greenways.ai/visual-language/artwork/www/world-confluence-night.webp" lightMobile="https://oss.greenways.ai/visual-language/artwork/www/world-confluence-day-mobile.webp" darkMobile="https://oss.greenways.ai/visual-language/artwork/www/world-confluence-night-mobile.webp" lightAlt="The Greenways world confluence: a mosaic garden city of domed pavilions, rivers and wildlife by day" darkAlt="The world confluence garden city illuminated at night" position="center" />
-    <div class="home-hero__veil"></div>
-    <div class="home-hero__copy">
-      <p class="eyebrow"><span class="status-dot"></span> A high-trust world for creative work · Public beta</p>
-      <h1>Create together.</h1>
-      <p>Compose music. Shape images and worlds. Work with people and machines. Greenways is building a publishing platform where contributions, approvals, attribution and history travel with the work.</p>
-      <div class="hero-actions"><a class="button button--gold" href="#early-access">Join early access</a><a class="button button--ghost" href="#studio">Explore the studio <span aria-hidden="true">↓</span></a></div>
+
+<BaseLayout
+  title="Greenways"
+  description="Tools, studio widgets and open standards for building great connected experiences."
+  path="/"
+  image="https://oss.greenways.ai/visual-language/assets/og-greenways.png"
+  imageAlt="A Greenways connected world in aquamarine and cyan"
+  bodyClass="world-home-page"
+  immersive={true}
+>
+  <header slot="header" class="world-header" data-world-header>
+    <a class="world-brand" href="/" aria-label="Greenways home">
+      <img src="/sigil.svg" alt="" width="48" height="48" />
+      <span>Greenways</span>
+    </a>
+
+    <nav class="world-nav" aria-label="Primary">
+      <a href="#worlds">Connected worlds</a>
+      <a href="#studio">Studio widgets</a>
+      <a href="#standards">Open standards</a>
+      <a href="https://oss.greenways.ai/">OSS ↗</a>
+    </nav>
+
+    <button
+      class="world-theme-toggle"
+      type="button"
+      data-world-theme
+      aria-label="Switch to dark theme"
+    >
+      <span data-world-theme-icon aria-hidden="true">☾</span>
+      <span data-world-theme-label>Dark</span>
+    </button>
+
+    <button
+      class="world-menu-toggle"
+      type="button"
+      data-world-menu-toggle
+      aria-controls="world-mobile-navigation"
+      aria-expanded="false"
+    >
+      Menu
+    </button>
+
+    <nav
+      class="world-mobile-nav"
+      id="world-mobile-navigation"
+      data-world-mobile-nav
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="#worlds">Connected worlds</a>
+      <a href="#studio">Studio widgets</a>
+      <a href="#standards">Open standards</a>
+      <a href="#early-access">Start building</a>
+      <a href="https://oss.greenways.ai/">OSS ↗</a>
+    </nav>
+  </header>
+
+  <div class="world-home">
+    <section
+      class="world-hero"
+      data-world-carousel
+      aria-roledescription="carousel"
+      aria-label="Greenways connected worlds"
+      tabindex="0"
+    >
+      <div class="world-carousel__track">
+        {slides.map((slide, index) => (
+          <article
+            class:list={["world-slide", { "is-active": index === 0 }]}
+            data-world-slide
+            data-title={slide.title}
+            aria-hidden={index === 0 ? "false" : "true"}
+          >
+            <div
+              class="world-slide__art gw-themed-artwork"
+              style={artworkStyle(slide)}
+              aria-hidden="true"
+            ></div>
+          </article>
+        ))}
+      </div>
+
+      <div class="world-hero__wash" aria-hidden="true"></div>
+
+      <div class="world-hero__content">
+        <p class="world-kicker">BUILD CONNECTED WORLDS</p>
+        <h1>Anyone can build a world.</h1>
+        <p class="world-hero__lead">
+          Greenways gives you tools, studio widgets and open standards to build
+          great experiences that can connect across the web.
+        </p>
+        <div class="world-hero__actions">
+          <a class="world-button world-button--primary" href="#studio">Explore the building blocks</a>
+          <a class="world-button world-button--quiet" href="#worlds">See how worlds connect</a>
+        </div>
+      </div>
+
+      <div class="world-carousel__controls">
+        <button
+          class="world-carousel__arrow"
+          type="button"
+          data-carousel-previous
+          aria-label="Show previous world"
+        >
+          ←
+        </button>
+
+        <div class="world-carousel__progress" aria-label="Choose a world">
+          {slides.map((slide, index) => (
+            <button
+              class:list={["world-carousel__dot", { "is-active": index === 0 }]}
+              type="button"
+              data-carousel-dot={index}
+              aria-label={`Show ${slide.title}`}
+              aria-current={index === 0 ? "true" : undefined}
+            ></button>
+          ))}
+        </div>
+
+        <div class="world-carousel__caption">
+          <span data-carousel-count>01 / 05</span>
+          <strong data-carousel-caption>Celestial Promenade</strong>
+        </div>
+
+        <button
+          class="world-carousel__arrow"
+          type="button"
+          data-carousel-next
+          aria-label="Show next world"
+        >
+          →
+        </button>
+      </div>
+
+      <p class="world-sr-only" aria-live="polite" data-carousel-status>
+        Showing Celestial Promenade, slide 1 of 5.
+      </p>
+    </section>
+
+    <section id="worlds" class="world-section world-section--worlds">
+      <header class="world-section__intro">
+        <p class="world-kicker">CONNECTED WORLDS</p>
+        <h2>Build experiences that can meet each other.</h2>
+        <p>
+          A world can be a game, a community, a studio, a service or something
+          nobody has named yet. Greenways makes each one easier to build and
+          ready to connect.
+        </p>
+      </header>
+
+      <div class="world-principles">
+        <article>
+          <span class="world-principle__icon" aria-hidden="true">◇</span>
+          <h3>Start with the experience</h3>
+          <p>Build the thing people see, use and care about before infrastructure gets in the way.</p>
+        </article>
+        <article>
+          <span class="world-principle__icon" aria-hidden="true">⌁</span>
+          <h3>Connect what matters</h3>
+          <p>Bring identity, content, events, tools and communities together without forcing every world into the same shape.</p>
+        </article>
+        <article>
+          <span class="world-principle__icon" aria-hidden="true">◎</span>
+          <h3>Keep control</h3>
+          <p>Choose what connects, what stays local and how your world changes as more people arrive.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="studio" class="world-section world-section--studio">
+      <div class="world-studio__copy">
+        <p class="world-kicker">STUDIO WIDGETS</p>
+        <h2>Start with building blocks, not a blank page.</h2>
+        <p>
+          Assemble rooms, tools, interfaces and shared spaces from reusable
+          widgets. Make them your own, then connect them into a larger
+          experience.
+        </p>
+        <a class="world-text-link" href="#standards">See what connects them →</a>
+      </div>
+
+      <div class="world-widget-board" aria-label="Examples of studio widgets">
+        <article class="world-widget world-widget--wide">
+          <span class="world-widget__icon" aria-hidden="true">◌</span>
+          <div><small>SCENE</small><h3>World canvas</h3><p>Shape the place people enter and explore.</p></div>
+        </article>
+        <article class="world-widget">
+          <span class="world-widget__icon" aria-hidden="true">◎</span>
+          <div><small>IDENTITY</small><h3>Profiles</h3><p>Let people arrive as themselves.</p></div>
+        </article>
+        <article class="world-widget">
+          <span class="world-widget__icon" aria-hidden="true">⌂</span>
+          <div><small>ROOMS</small><h3>Shared spaces</h3><p>Create places for work, play and conversation.</p></div>
+        </article>
+        <article class="world-widget">
+          <span class="world-widget__icon" aria-hidden="true">↯</span>
+          <div><small>AGENTS</small><h3>Active helpers</h3><p>Give agents a clear place and role in the experience.</p></div>
+        </article>
+        <article class="world-widget">
+          <span class="world-widget__icon" aria-hidden="true">⌁</span>
+          <div><small>FEEDS</small><h3>Live activity</h3><p>Bring updates, media and participation into view.</p></div>
+        </article>
+        <article class="world-widget world-widget--wide">
+          <span class="world-widget__icon" aria-hidden="true">◇</span>
+          <div><small>WORKFLOWS</small><h3>Connected actions</h3><p>Turn separate tools into one coherent experience.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="standards" class="world-section world-section--standards">
+      <div class="world-standards__panel">
+        <div>
+          <p class="world-kicker">OPEN STANDARDS</p>
+          <h2>Build once. Connect when you are ready.</h2>
+        </div>
+        <p>
+          Greenways standards help worlds exchange identity, content, events
+          and state without being absorbed into one platform. Your experience
+          keeps its own character while gaining ways to work with others.
+        </p>
+      </div>
+
+      <div class="world-standards__grid">
+        <article><h3>Portable identity</h3><p>People should not have to become a different person in every world.</p></article>
+        <article><h3>Shared language</h3><p>Tools and services can cooperate without becoming identical.</p></article>
+        <article><h3>Builder control</h3><p>You decide what connects, what stays local and how the world evolves.</p></article>
+      </div>
+    </section>
+
+    <section class="world-builder-callout">
+      <div>
+        <p class="world-kicker">FOR BUILDERS OF EVERY KIND</p>
+        <h2>You do not need permission to start.</h2>
+        <p>
+          Design a room. Publish a tool. Connect a community. Build a complete
+          world. Greenways should make the first step small and the ceiling high.
+        </p>
+      </div>
+      <a class="world-button world-button--primary" href="#early-access">Start building</a>
+    </section>
+
+    <aside class="world-oss-note" aria-label="Greenways open source">
+      <p><strong>We are big in open source.</strong> The public code and standards live on a separate site.</p>
+      <a href="https://oss.greenways.ai/">Visit oss.greenways.ai ↗</a>
+    </aside>
+
+    <BetaForm />
+  </div>
+
+  <footer slot="footer" class="world-footer">
+    <div>
+      <a class="world-brand" href="/" aria-label="Greenways home">
+        <img src="/sigil.svg" alt="" width="42" height="42" />
+        <span>Greenways</span>
+      </a>
+      <p>Build connected worlds.</p>
     </div>
-    <div class="hero-inscription"><span>CREATE</span><i></i><span>COLLABORATE</span><i></i><span>ATTRIBUTE</span><i></i><span>PUBLISH</span></div>
-  </section>
-
-  <CreativeLabs />
-
-  <section class="hara-section section-shell" id="language" aria-labelledby="language-title">
-    <header class="section-heading">
-      <div class="section-index">INTERLUDE · THE LANGUAGE</div>
-      <div><p class="eyebrow">The living language, running here</p><h2 id="language-title">The world has<br />a language.</h2></div>
-      <p>Hara is the language kernel in the open-source foundations below—and its WASM runtime boots right in this page. Press Run to evaluate HAL in your browser; nothing is installed and nothing leaves the page.</p>
-    </header>
-    <HaraPlayground />
-  </section>
-
-  <section class="principles-section section-shell" id="principles" aria-labelledby="principles-title">
-    <header class="section-heading"><div class="section-index">II · THE COMMON GROUND</div><div><p class="eyebrow">Open by construction</p><h2 id="principles-title">A world needs<br />common ground.</h2></div><p>Greenways is being designed so each place can preserve its own identity, memory and rules while remaining connected. Common formats and protocols let work travel without making the whole world depend on one machine or institution.</p></header>
-    <div class="principle-orbit">
-      <MosaicMark label="Open creative foundation" variant="greenways" />
-      <div class="orbit-core"><strong>YOUR WORK</strong><span>portable · attributable · durable</span></div>
-      <article><b>01</b><h3>Open formats</h3><p>HAL, HTA and deterministic packages are published as inspectable specifications.</p></article>
-      <article><b>02</b><h3>Independent places</h3><p>Studios, personal nodes and community spaces are being designed to run separately, keep local state and choose their own rules.</p></article>
-      <article><b>03</b><h3>Living connections</h3><p>Open-web protocols provide a path for those places to collaborate and exchange durable work without becoming one central system.</p></article>
-      <article><b>04</b><h3>Human provenance</h3><p>Credits, approvals and lineage are first-class records, not metadata swept aside.</p></article>
-    </div>
-  </section>
-
-  <section class="opensource-preview section-shell" aria-labelledby="opensource-title">
-    <header class="section-heading"><div class="section-index">III · THE FOUNDATIONS</div><div><p class="eyebrow">Built in public</p><h2 id="opensource-title">Independent foundations.<br />One connected world.</h2></div><p>We are building toward places with their own language, gateway, ledger and memory—small operating systems that can remain independently governed, then connect through open protocols to form Greenways.</p></header>
-    <div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} />)}</div>
-    <a class="wide-link" href="/opensource/"><span>Read the open-source architecture</span><span aria-hidden="true">↗</span></a>
-  </section>
-
-  <CosmicCatalogue />
-  <BetaForm />
+    <nav aria-label="Footer navigation">
+      <a href="#worlds">Worlds</a>
+      <a href="#studio">Studio</a>
+      <a href="#standards">Standards</a>
+      <a href="https://oss.greenways.ai/">OSS ↗</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="mailto:hello@greenways.ai">hello@greenways.ai</a>
+    </nav>
+    <small>© 2026 Greenways Pty Ltd. Greenways marks and artwork reserved.</small>
+  </footer>
 </BaseLayout>
+
+<script>
+  const root = document.documentElement;
+  const carousel = document.querySelector<HTMLElement>("[data-world-carousel]");
+
+  if (carousel) {
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>("[data-world-slide]"));
+    const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"));
+    const previous = carousel.querySelector<HTMLButtonElement>("[data-carousel-previous]");
+    const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
+    const count = carousel.querySelector<HTMLElement>("[data-carousel-count]");
+    const caption = carousel.querySelector<HTMLElement>("[data-carousel-caption]");
+    const status = carousel.querySelector<HTMLElement>("[data-carousel-status]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let activeIndex = 0;
+    let timer: number | undefined;
+
+    const render = (index: number, announce = true) => {
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === activeIndex;
+        dot.classList.toggle("is-active", isActive);
+        if (isActive) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+      const title = slides[activeIndex]?.dataset.title ?? "Connected world";
+      if (count) count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+      if (caption) caption.textContent = title;
+      if (announce && status) status.textContent = `Showing ${title}, slide ${activeIndex + 1} of ${slides.length}.`;
+    };
+
+    const stop = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    const start = () => {
+      stop();
+      if (reducedMotion.matches) return;
+      timer = window.setInterval(() => render(activeIndex + 1, false), 7000);
+    };
+
+    previous?.addEventListener("click", () => {
+      render(activeIndex - 1);
+      start();
+    });
+    next?.addEventListener("click", () => {
+      render(activeIndex + 1);
+      start();
+    });
+    dots.forEach((dot, index) => dot.addEventListener("click", () => {
+      render(index);
+      start();
+    }));
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        render(activeIndex - 1);
+        start();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        render(activeIndex + 1);
+        start();
+      }
+    });
+    carousel.addEventListener("pointerenter", stop);
+    carousel.addEventListener("pointerleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    reducedMotion.addEventListener?.("change", start);
+    render(0, false);
+    start();
+  }
+
+  const themeButton = document.querySelector<HTMLButtonElement>("[data-world-theme]");
+  const themeIcon = themeButton?.querySelector<HTMLElement>("[data-world-theme-icon]");
+  const themeLabel = themeButton?.querySelector<HTMLElement>("[data-world-theme-label]");
+
+  const updateThemeButton = () => {
+    const dark = root.dataset.theme === "dark";
+    const nextTheme = dark ? "light" : "dark";
+    if (themeIcon) themeIcon.textContent = dark ? "☀" : "☾";
+    if (themeLabel) themeLabel.textContent = dark ? "Light" : "Dark";
+    themeButton?.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+  };
+
+  themeButton?.addEventListener("click", () => {
+    const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+    const themeApi = (window as Window & {
+      GreenwaysTheme?: { apply: (theme: "light" | "dark", persist?: boolean) => unknown };
+    }).GreenwaysTheme;
+    if (themeApi) themeApi.apply(nextTheme, true);
+    else root.dataset.theme = nextTheme;
+    updateThemeButton();
+  });
+  window.addEventListener("gw-theme-change", updateThemeButton);
+  updateThemeButton();
+
+  const menuButton = document.querySelector<HTMLButtonElement>("[data-world-menu-toggle]");
+  const mobileNav = document.querySelector<HTMLElement>("[data-world-mobile-nav]");
+  const setMenu = (open: boolean) => {
+    if (mobileNav) mobileNav.hidden = !open;
+    menuButton?.setAttribute("aria-expanded", String(open));
+  };
+  menuButton?.addEventListener("click", () => setMenu(mobileNav?.hidden ?? true));
+  mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+</script>
