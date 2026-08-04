@@ -22,7 +22,7 @@ const {
   title,
   description,
   path = "/",
-  image = "/assets/og-greenways-whatsapp.jpg",
+  image = "https://opensource.greenways.ai/visual-language/assets/og-greenways.png",
   imageAlt = "Greenways — Create together, beside a celestial civic rotunda",
   theme = "greenways",
   noindex = false
@@ -49,14 +49,14 @@ const structuredData = {
     <meta name="theme-color" content="#0b1513" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/sigil.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:secure_url" content={imageUrl} />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={imageAlt} />
