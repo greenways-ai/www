@@ -38,3 +38,20 @@ jobs:
           path: dist
           if-no-files-found: error
           retention-days: 3
+
+      - name: Deploy production when credentials are configured
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::notice::NETLIFY_AUTH_TOKEN is not configured; build artifact is ready but production deploy was skipped."
+            exit 0
+          fi
+          SITE_ID="${NETLIFY_SITE_ID:-78207d83-4e5f-42ca-8575-294957b9b5af}"
+          npx -y netlify-cli@latest deploy \
+            --prod \
+            --dir=dist \
+            --site="$SITE_ID" \
+            --message="GitHub main $GITHUB_SHA" \
+            --json
