@@ -15,7 +15,7 @@
   --line: rgba(231, 223, 202, .17);
   --line-strong: rgba(231, 223, 202, .35);
   --page: 1280px;
-  --display: "Marcellus", Georgia, serif;
+  --display: var(--gw-font-display, "Bodoni Moda", Didot, "Bodoni 72", Georgia, serif);
   --sans: "Manrope", system-ui, sans-serif;
   --mono: "IBM Plex Mono", monospace;
 }
