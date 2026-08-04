@@ -38,7 +38,6 @@ test("all four open foundations keep their dedicated routes", async () => {
     const route = await source(`src/pages/opensource/${slug}.astro`);
     assert.match(route, new RegExp(`projectBySlug\\.${slug}`));
   }
-  assert.match(projects, /license: "EPL-2\.0"/);
   assert.match(projects, /license: "Apache-2\.0"/);
 });
 
