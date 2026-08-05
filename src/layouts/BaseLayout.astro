@@ -1,12 +1,15 @@
 ---
-import "@fontsource/marcellus/400.css";
+import "@fontsource/bodoni-moda/400.css";
 import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/ibm-plex-mono/400.css";
+import "@greenways-ai/visual-language/typography.css";
 import "@greenways-ai/visual-language/theme.css";
 import SharedHeader from "@greenways-ai/visual-language/SharedHeader.astro";
 import "../styles/global.css";
+import "../styles/typography.css";
+import "../styles/world-typography.css";
 
 type Props = {
   title: string;
@@ -16,6 +19,8 @@ type Props = {
   imageAlt?: string;
   theme?: string;
   noindex?: boolean;
+  bodyClass?: string;
+  immersive?: boolean;
 };
 
 const {
@@ -23,9 +28,11 @@ const {
   description,
   path = "/",
   image = "https://oss.greenways.ai/visual-language/assets/og-greenways.png",
-  imageAlt = "Greenways — Create together, beside a celestial civic rotunda",
+  imageAlt = "Greenways — tools and open standards for building connected worlds",
   theme = "greenways",
-  noindex = false
+  noindex = false,
+  bodyClass = "",
+  immersive = false
 } = Astro.props;
 const canonical = new URL(path, Astro.site ?? "https://greenways.ai");
 const imageUrl = image.startsWith("http") ? image : new URL(image, Astro.site ?? canonical).href;
@@ -45,8 +52,8 @@ const structuredData = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f2ebdd" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1513" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#edf9f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#031315" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -69,20 +76,40 @@ const structuredData = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <script>import "@greenways-ai/visual-language/theme.js";</script>
   </head>
-  <body>
+  <body class={bodyClass || undefined}>
     <a class="skip-link" href="#content">Skip to content</a>
-    <SharedHeader project="greenways" title="Greenways" homeHref="/" searchBase="" nav={[{label:"Studio",href:"/#studio"},{label:"Open source",href:"/opensource/"},{label:"Principles",href:"/#principles"}]} githubHref="https://github.com/greenways-ai" cta={{label:"Early access",href:"/#early-access"}} />
+    {immersive ? (
+      <slot name="header" />
+    ) : (
+      <SharedHeader
+        project="greenways"
+        title="Greenways"
+        homeHref="/"
+        searchBase=""
+        nav={[
+          { label: "Studio", href: "/#studio" },
+          { label: "Open source", href: "/opensource/" },
+          { label: "Principles", href: "/#principles" }
+        ]}
+        githubHref="https://github.com/greenways-ai"
+        cta={{ label: "Early access", href: "/#early-access" }}
+      />
+    )}
     <main id="content"><slot /></main>
-    <footer class="site-footer">
-      <div><span class="wordmark-text">GREENWAYS</span><p>Create together.</p></div>
-      <nav aria-label="Footer navigation">
-        <a href="/opensource/">Open source</a>
-        <a href="https://github.com/greenways-ai">GitHub ↗</a>
-        <a href="https://hara-lang.org">Hara ↗</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="mailto:hello@greenways.ai">hello@greenways.ai</a>
-      </nav>
-      <small>© 2026 Greenways Pty Ltd. Code under Apache-2.0. Greenways marks and artwork reserved.</small>
-    </footer>
+    {immersive ? (
+      <slot name="footer" />
+    ) : (
+      <footer class="site-footer">
+        <div><span class="wordmark-text">GREENWAYS</span><p>Create together.</p></div>
+        <nav aria-label="Footer navigation">
+          <a href="/opensource/">Open source</a>
+          <a href="https://github.com/greenways-ai">GitHub ↗</a>
+          <a href="https://hara-lang.org">Hara ↗</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="mailto:hello@greenways.ai">hello@greenways.ai</a>
+        </nav>
+        <small>© 2026 Greenways Pty Ltd. Code under Apache-2.0. Greenways marks and artwork reserved.</small>
+      </footer>
+    )}
   </body>
 </html>
