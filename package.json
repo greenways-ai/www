@@ -17,7 +17,7 @@
     "@fontsource/bodoni-moda": "^5.2.7",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/manrope": "^5.2.7",
-    "@greenways-ai/visual-language": "github:greenways-ai/visual-language#b6cb68cb1af5b737d7f88ef2e0e8313971daf127",
+    "@greenways-ai/visual-language": "github:greenways-ai/visual-language#2163b84d76dc8b057d45fa4fb786054b230d865d",
     "astro": "^7.1.6",
     "three": "^0.179.1"
   },
