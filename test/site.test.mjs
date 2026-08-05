@@ -21,7 +21,7 @@ test("the apex site leads with connected-world builders", async () => {
   assert.match(home, /https:\/\/oss\.greenways\.ai\//);
   assert.match(home, /Celestial Promenade/);
   assert.match(home, /data-world-carousel/);
-  assert.match(home, /data-world-theme/);
+  assert.match(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
   assert.doesNotMatch(home, /A high-trust world for creative work/);
   assert.doesNotMatch(home, /Create together/);
   assert.doesNotMatch(home, /THE CELESTIAL WORLD|One atelier|Many forms/);
@@ -89,7 +89,8 @@ test("the homepage keeps accessible carousel and motion controls", async () => {
   assert.match(home, /ArrowLeft/);
   assert.match(home, /ArrowRight/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
-  assert.match(home, /GreenwaysTheme/);
+  assert.match(home, /SharedHeader/);
+  assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
 
 test("Open Graph metadata stays complete", async () => {

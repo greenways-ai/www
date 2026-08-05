@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
 import HaraPlayground from "../components/HaraPlayground.astro";
+import SharedHeader from "@greenways-ai/visual-language/SharedHeader.astro";
 import "../styles/world-home.css";
 
 const slides = [
@@ -55,55 +56,22 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
   bodyClass="world-home-page"
   immersive={true}
 >
-  <header slot="header" class="world-header" data-world-header>
-    <a class="world-brand" href="/" aria-label="Greenways home">
-      <img src="/sigil.svg" alt="" width="48" height="48" />
-      <span>Greenways</span>
-    </a>
-
-    <nav class="world-nav" aria-label="Primary">
-      <a href="#worlds">Connected worlds</a>
-      <a href="#studio">Studio widgets</a>
-      <a href="#language">Language</a>
-      <a href="#standards">Open standards</a>
-      <a href="https://oss.greenways.ai/">OSS ↗</a>
-    </nav>
-
-    <button
-      class="world-theme-toggle"
-      type="button"
-      data-world-theme
-      aria-label="Switch to dark theme"
-    >
-      <span data-world-theme-icon aria-hidden="true">☾</span>
-      <span data-world-theme-label>Dark</span>
-    </button>
-
-    <button
-      class="world-menu-toggle"
-      type="button"
-      data-world-menu-toggle
-      aria-controls="world-mobile-navigation"
-      aria-expanded="false"
-    >
-      Menu
-    </button>
-
-    <nav
-      class="world-mobile-nav"
-      id="world-mobile-navigation"
-      data-world-mobile-nav
-      aria-label="Mobile navigation"
-      hidden
-    >
-      <a href="#worlds">Connected worlds</a>
-      <a href="#studio">Studio widgets</a>
-      <a href="#language">Language</a>
-      <a href="#standards">Open standards</a>
-      <a href="#early-access">Start building</a>
-      <a href="https://oss.greenways.ai/">OSS ↗</a>
-    </nav>
-  </header>
+  <div slot="header" class="world-header-shell">
+    <SharedHeader
+      project="greenways"
+      title="Greenways"
+      homeHref="/"
+      nav={[
+        { label: "Connected worlds", href: "#worlds" },
+        { label: "Studio widgets", href: "#studio" },
+        { label: "Language", href: "#language" },
+        { label: "Open standards", href: "#standards" }
+      ]}
+      githubHref="https://github.com/greenways-ai"
+      cta={{ label: "Start building", href: "#early-access" }}
+      searchBase=""
+    />
+  </div>
 
   <div class="world-home">
     <section
@@ -333,7 +301,6 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
 </BaseLayout>
 
 <script>
-  const root = document.documentElement;
   const carousel = document.querySelector<HTMLElement>("[data-world-carousel]");
 
   if (carousel) {
@@ -410,37 +377,4 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
     render(0, false);
     start();
   }
-
-  const themeButton = document.querySelector<HTMLButtonElement>("[data-world-theme]");
-  const themeIcon = themeButton?.querySelector<HTMLElement>("[data-world-theme-icon]");
-  const themeLabel = themeButton?.querySelector<HTMLElement>("[data-world-theme-label]");
-
-  const updateThemeButton = () => {
-    const dark = root.dataset.theme === "dark";
-    const nextTheme = dark ? "light" : "dark";
-    if (themeIcon) themeIcon.textContent = dark ? "☀" : "☾";
-    if (themeLabel) themeLabel.textContent = dark ? "Light" : "Dark";
-    themeButton?.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
-  };
-
-  themeButton?.addEventListener("click", () => {
-    const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-    const themeApi = (window as Window & {
-      GreenwaysTheme?: { apply: (theme: "light" | "dark", persist?: boolean) => unknown };
-    }).GreenwaysTheme;
-    if (themeApi) themeApi.apply(nextTheme, true);
-    else root.dataset.theme = nextTheme;
-    updateThemeButton();
-  });
-  window.addEventListener("gw-theme-change", updateThemeButton);
-  updateThemeButton();
-
-  const menuButton = document.querySelector<HTMLButtonElement>("[data-world-menu-toggle]");
-  const mobileNav = document.querySelector<HTMLElement>("[data-world-mobile-nav]");
-  const setMenu = (open: boolean) => {
-    if (mobileNav) mobileNav.hidden = !open;
-    menuButton?.setAttribute("aria-expanded", String(open));
-  };
-  menuButton?.addEventListener("click", () => setMenu(mobileNav?.hidden ?? true));
-  mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
 </script>
