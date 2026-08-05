@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
+import HaraPlayground from "../components/HaraPlayground.astro";
 import "../styles/world-home.css";
 
 const slides = [
@@ -63,6 +64,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
     <nav class="world-nav" aria-label="Primary">
       <a href="#worlds">Connected worlds</a>
       <a href="#studio">Studio widgets</a>
+      <a href="#language">Language</a>
       <a href="#standards">Open standards</a>
       <a href="https://oss.greenways.ai/">OSS ↗</a>
     </nav>
@@ -96,6 +98,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
     >
       <a href="#worlds">Connected worlds</a>
       <a href="#studio">Studio widgets</a>
+      <a href="#language">Language</a>
       <a href="#standards">Open standards</a>
       <a href="#early-access">Start building</a>
       <a href="https://oss.greenways.ai/">OSS ↗</a>
@@ -254,6 +257,20 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
       </div>
     </section>
 
+    <section id="language" class="world-section world-section--language">
+      <header class="world-section__intro">
+        <p class="world-kicker">THE SHARED LANGUAGE</p>
+        <h2>One language runs beneath every world.</h2>
+        <p>
+          Hara is the small language the Greenways foundations are built
+          from — and a real Hara kernel is running in this page right now.
+          Edit a snippet, press Run, and watch it answer.
+        </p>
+      </header>
+
+      <HaraPlayground />
+    </section>
+
     <section id="standards" class="world-section world-section--standards">
       <div class="world-standards__panel">
         <div>
@@ -305,6 +322,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
     <nav aria-label="Footer navigation">
       <a href="#worlds">Worlds</a>
       <a href="#studio">Studio</a>
+      <a href="#language">Language</a>
       <a href="#standards">Standards</a>
       <a href="https://oss.greenways.ai/">OSS ↗</a>
       <a href="/privacy/">Privacy</a>

@@ -471,6 +471,13 @@ body.world-home-page .skip-link {
   align-items: start;
 }
 
+.world-section--language .hara-playground {
+  margin-top: 72px;
+  overflow: hidden;
+  border: 1px solid var(--world-line);
+  border-radius: 18px;
+}
+
 .world-studio__copy {
   position: sticky;
   top: 110px;
