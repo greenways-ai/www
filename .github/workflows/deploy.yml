@@ -1,0 +1,39 @@
+name: Deploy greenways.ai
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netlify-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # The visual-language dependency is pinned as a git+ssh GitHub URL in
+      # package-lock.json; rewrite to HTTPS so npm ci works without SSH keys.
+      - name: Fetch git dependencies over HTTPS
+        run: git config --global url."https://github.com/".insteadOf "git+ssh://git@github.com/"
+
+      - run: npm ci
+
+      # netlify deploy runs the build command from netlify.toml (npm run
+      # build, which vendors the Hara runtime via prebuild) before uploading.
+      - name: Build and deploy to Netlify production
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx --yes netlify-cli deploy --dir=dist --prod
