@@ -1,54 +1,54 @@
 {
   "schema": "hara-kernel-manifest/v1",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "htaAbi": 2,
   "variants": {
     "core": {
-      "file": "hara-wasm-core-0.1.1.wasm",
+      "file": "hara-wasm-core-0.1.2.wasm",
       "features": [
         "interpreter",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-core-0.1.1.wasm",
-      "sha256": "7eae2c5b894afa9090884ef3fdbb8616d7ce29f2a1dffe02efd0550b939e04b7",
+      "url": "/hara-runtime/hara-wasm-core-0.1.2.wasm",
+      "sha256": "3b9dea65446bc678be4c860a0805156ce38f918f60195bc63438042a8c65ca8b",
       "bytes": {
-        "raw": 985316,
+        "raw": 985318,
         "gzip": 333776,
-        "brotli": 265663
+        "brotli": 265889
       }
     },
     "vm": {
-      "file": "hara-wasm-vm-0.1.1.wasm",
+      "file": "hara-wasm-vm-0.1.2.wasm",
       "features": [
         "bytecode-vm",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-vm-0.1.1.wasm",
-      "sha256": "ee4b877265a43fe72f48ba7a9e79bdb401f0b66e47b1fbf754267d97f1e7f3a1",
+      "url": "/hara-runtime/hara-wasm-vm-0.1.2.wasm",
+      "sha256": "389af633a635eaa209556a946ccbf7902d37330354bcd478d29491437e28c1c0",
       "bytes": {
         "raw": 1136638,
-        "gzip": 385797,
-        "brotli": 306734
+        "gzip": 385796,
+        "brotli": 306689
       }
     },
     "trace": {
-      "file": "hara-wasm-trace-0.1.1.wasm",
+      "file": "hara-wasm-trace-0.1.2.wasm",
       "features": [
         "dev-trace",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-trace-0.1.1.wasm",
-      "sha256": "32fb1780b5ff4d6519626c69fa5628ea4ac03eb229360a40691248eee4bf1d29",
+      "url": "/hara-runtime/hara-wasm-trace-0.1.2.wasm",
+      "sha256": "baacba3fe0b0412519e65a99de56faf9abcd65fdb0de03fc080351f0dee9a412",
       "bytes": {
-        "raw": 1001607,
-        "gzip": 340176,
-        "brotli": 270589
+        "raw": 1001609,
+        "gzip": 340206,
+        "brotli": 270961
       }
     }
   }
