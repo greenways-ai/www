@@ -35,7 +35,13 @@ const {
   immersive = false
 } = Astro.props;
 const canonical = new URL(path, Astro.site ?? "https://greenways.ai");
-const imageUrl = image.startsWith("http") ? image : new URL(image, Astro.site ?? canonical).href;
+const normalizedImage = image.replace(
+  /(https:\/\/oss\.greenways\.ai\/visual-language\/assets\/og-[a-z0-9-]+)\.png$/,
+  "$1.jpg"
+);
+const imageUrl = normalizedImage.startsWith("http")
+  ? normalizedImage
+  : new URL(normalizedImage, Astro.site ?? canonical).href;
 const imageType = imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")
   ? "image/jpeg"
   : imageUrl.endsWith(".webp")
