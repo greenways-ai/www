@@ -5,7 +5,7 @@ import MosaicMark from "./MosaicMark.astro";
 const { project } = Astro.props as { project: Project };
 const isHara = project.slug === "hara";
 const ogName = ["hestia", "hoplite", "historia"].includes(project.slug) ? project.slug : "greenways";
-const image = `https://oss.greenways.ai/visual-language/assets/og-${ogName}.png`;
+const image = `https://oss.greenways.ai/visual-language/assets/og-${ogName}.jpg`;
 ---
 <BaseLayout title={project.name} description={project.summary} path={`/opensource/${project.slug}/`} image={image} theme={project.slug} imageAlt={`${project.name}, one of four Greenways open-source foundations`}>
   <section class:list={["project-hero", `accent-${project.accent}`]}>
