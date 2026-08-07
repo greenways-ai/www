@@ -27,7 +27,7 @@ const {
   title,
   description,
   path = "/",
-  image = "https://oss.greenways.ai/visual-language/assets/og-greenways.png",
+  image = "https://oss.greenways.ai/visual-language/assets/og-greenways.jpg",
   imageAlt = "Greenways — tools and open standards for building connected worlds",
   theme = "greenways",
   noindex = false,
@@ -35,7 +35,18 @@ const {
   immersive = false
 } = Astro.props;
 const canonical = new URL(path, Astro.site ?? "https://greenways.ai");
-const imageUrl = image.startsWith("http") ? image : new URL(image, Astro.site ?? canonical).href;
+const normalizedImage = image.replace(
+  /(https:\/\/oss\.greenways\.ai\/visual-language\/assets\/og-[a-z0-9-]+)\.png$/,
+  "$1.jpg"
+);
+const imageUrl = normalizedImage.startsWith("http")
+  ? normalizedImage
+  : new URL(normalizedImage, Astro.site ?? canonical).href;
+const imageType = imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")
+  ? "image/jpeg"
+  : imageUrl.endsWith(".webp")
+    ? "image/webp"
+    : "image/png";
 const pageTitle = title === "Greenways" ? title : `${title} · Greenways`;
 const structuredData = {
   "@context": "https://schema.org",
@@ -63,7 +74,7 @@ const structuredData = {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:secure_url" content={imageUrl} />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content={imageType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={imageAlt} />

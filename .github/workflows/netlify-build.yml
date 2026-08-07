@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -31,6 +32,14 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Verify optimized social previews
+        run: |
+          grep -q 'https://oss.greenways.ai/visual-language/assets/og-greenways.jpg' dist/index.html
+          grep -q 'https://oss.greenways.ai/visual-language/assets/og-hestia.jpg' dist/opensource/hestia/index.html
+          grep -q 'https://oss.greenways.ai/visual-language/assets/og-hoplite.jpg' dist/opensource/hoplite/index.html
+          grep -q 'https://oss.greenways.ai/visual-language/assets/og-historia.jpg' dist/opensource/historia/index.html
+          ! grep -R -E 'visual-language/assets/og-[^" ]+\.png' dist --include='*.html'
+
       - name: Upload Netlify bundle
         uses: actions/upload-artifact@v4
         with:
@@ -40,6 +49,7 @@ jobs:
           retention-days: 3
 
       - name: Deploy production when credentials are configured
+        if: github.event_name != 'pull_request'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

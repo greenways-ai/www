@@ -93,12 +93,21 @@ test("the homepage keeps accessible carousel and motion controls", async () => {
   assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
 
-test("Open Graph metadata stays complete", async () => {
-  const layout = await source("src/layouts/BaseLayout.astro");
+test("Open Graph metadata stays complete and uses the optimized JPEG cards", async () => {
+  const [layout, openSource, projectPage] = await Promise.all([
+    source("src/layouts/BaseLayout.astro"),
+    source("src/pages/opensource/index.astro"),
+    source("src/components/ProjectPage.astro")
+  ]);
   assert.match(layout, /og:image:secure_url/);
   assert.match(layout, /og:image:width" content="1200"/);
   assert.match(layout, /og:image:height" content="630"/);
   assert.match(layout, /twitter:image:alt/);
-  assert.match(layout, /og:image:type" content="image\/png"/);
-  assert.match(layout, /og-greenways\.png/);
+  assert.match(layout, /imageType/);
+  assert.match(layout, /og-greenways\.jpg/);
+  assert.match(openSource, /og-greenways\.jpg/);
+  assert.match(projectPage, /og-\$\{ogName\}\.jpg/);
+  assert.doesNotMatch(layout, /og-greenways\.png/);
+  assert.doesNotMatch(openSource, /og-greenways\.png/);
+  assert.doesNotMatch(projectPage, /og-\$\{ogName\}\.png/);
 });
