@@ -1,54 +1,64 @@
 {
   "schema": "hara-kernel-manifest/v1",
-  "version": "0.1.2",
-  "htaAbi": 2,
+  "version": "0.1.6",
+  "htaAbi": 3,
+  "bootstrap": {
+    "file": "foundation.halc",
+    "url": "/hara-runtime/foundation.halc",
+    "sha256": "0b7dd078701a6fc96a79b81e21b636c7d06443f32dbb1919dc5109a09df2e6a5",
+    "bytes": {
+      "raw": 72305,
+      "gzip": 11729,
+      "brotli": 10053
+    }
+  },
   "variants": {
     "core": {
-      "file": "hara-wasm-core-0.1.2.wasm",
+      "file": "hara-wasm-core-0.1.6.wasm",
       "features": [
         "interpreter",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-core-0.1.2.wasm",
-      "sha256": "3b9dea65446bc678be4c860a0805156ce38f918f60195bc63438042a8c65ca8b",
+      "url": "/hara-runtime/hara-wasm-core-0.1.6.wasm",
+      "sha256": "9af94771a32652695509141c2ec21f8642d69727b061d70242f07bfa17db9b8e",
       "bytes": {
-        "raw": 985318,
-        "gzip": 333776,
-        "brotli": 265889
+        "raw": 2161447,
+        "gzip": 742474,
+        "brotli": 556384
       }
     },
     "vm": {
-      "file": "hara-wasm-vm-0.1.2.wasm",
+      "file": "hara-wasm-vm-0.1.6.wasm",
       "features": [
         "bytecode-vm",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-vm-0.1.2.wasm",
-      "sha256": "389af633a635eaa209556a946ccbf7902d37330354bcd478d29491437e28c1c0",
+      "url": "/hara-runtime/hara-wasm-vm-0.1.6.wasm",
+      "sha256": "a9a5af9761fb9a32129f9bd0f2326cc0da199a49777185cce0e6caeff006cf38",
       "bytes": {
-        "raw": 1136638,
-        "gzip": 385796,
-        "brotli": 306689
+        "raw": 2375937,
+        "gzip": 814647,
+        "brotli": 610985
       }
     },
     "trace": {
-      "file": "hara-wasm-trace-0.1.2.wasm",
+      "file": "hara-wasm-trace-0.1.6.wasm",
       "features": [
         "dev-trace",
         "hta",
         "sessions",
         "host-bridges"
       ],
-      "url": "/hara-runtime/hara-wasm-trace-0.1.2.wasm",
-      "sha256": "baacba3fe0b0412519e65a99de56faf9abcd65fdb0de03fc080351f0dee9a412",
+      "url": "/hara-runtime/hara-wasm-trace-0.1.6.wasm",
+      "sha256": "6eba18e03aea7a793f53ab8f7c48d0e92fe552007b04d48c90379839fe2e5311",
       "bytes": {
-        "raw": 1001609,
-        "gzip": 340206,
-        "brotli": 270961
+        "raw": 2177935,
+        "gzip": 749783,
+        "brotli": 561746
       }
     }
   }

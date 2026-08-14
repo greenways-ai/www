@@ -1,7 +1,7 @@
-import { HtaContext } from "/hara-runtime/hta.js?v=20260803-modular-kernel";
-import { createHostServices } from "/hara-runtime/studio/host-services.js";
+import { HtaContext } from "/runtime/hta.js?v=20260803-modular-kernel";
+import { createHostServices } from "/runtime/studio/host-services.js";
 
-export function prepareDocsEval(source) {
+export function prepareLiveEval(source) {
   if (/^\(\s*fn(?:\s|\[)/.test(source.trim())) {
     return {
       source: `(do ${source}\n nil)`,
@@ -11,16 +11,10 @@ export function prepareDocsEval(source) {
   return { source, label: null };
 }
 
-/**
- * A browser-local Hara kernel for documentation snippets. It exposes the
- * Studio's persistent browser store and virtual filesystem, but no workspace
- * UI or ambient device capabilities.
- */
-async function loadKernelAssets(wasmUrl, resources, bootstrapUrl, fetchAsset) {
+async function loadKernelAssets(wasmUrl, resources, fetchAsset) {
   const entries = Object.entries(resources);
-  const [response, bootstrapResponse, ...resourceResponses] = await Promise.all([
+  const [response, ...resourceResponses] = await Promise.all([
     fetchAsset(wasmUrl),
-    bootstrapUrl ? fetchAsset(bootstrapUrl) : Promise.resolve(null),
     ...entries.map(([, url]) => fetchAsset(url))
   ]);
   if (!response.ok) throw new Error(`hara.wasm: ${response.status}`);
@@ -30,13 +24,7 @@ async function loadKernelAssets(wasmUrl, resources, bootstrapUrl, fetchAsset) {
     if (!resourceResponse.ok) throw new Error(`${name}: ${resourceResponse.status}`);
     return [name, await resourceResponse.text()];
   }));
-  if (bootstrapResponse && !bootstrapResponse.ok) {
-    throw new Error(`${bootstrapUrl}: ${bootstrapResponse.status}`);
-  }
-  const bootstrapBytes = bootstrapResponse
-    ? new Uint8Array(await bootstrapResponse.arrayBuffer())
-    : null;
-  return { moduleBytes, bootstrapBytes, loadedResources };
+  return { moduleBytes, loadedResources };
 }
 
 async function verifySha256(bytes, expected) {
@@ -51,7 +39,12 @@ function filesystemDescriptor(value) {
   return { provider: provider || "memory", key: parts.join(":") || "default" };
 }
 
-export async function createDocsKernel({
+/**
+ * Browser-local Hara kernel shared by the public website's live examples.
+ * The runtime remains owned by hara-www and exposes only the persistent
+ * browser store, virtual filesystem, and explicitly registered canvases.
+ */
+export async function createBrowserKernel({
   wasmUrl,
   workerUrl,
   resources = {},
@@ -60,22 +53,17 @@ export async function createDocsKernel({
   WorkerClass = Worker,
   ContextClass = HtaContext
 }) {
-  // Fetch every startup dependency before constructing the worker. This keeps
-  // the kernel from becoming observable while its require resources are still
-  // in flight on a cold page load.
-  const bootstrapUrl = manifest?.bootstrap?.url ?? null;
-  const { moduleBytes, bootstrapBytes, loadedResources } =
-    await loadKernelAssets(wasmUrl, resources, bootstrapUrl, fetchAsset);
+  const { moduleBytes, loadedResources } =
+    await loadKernelAssets(wasmUrl, resources, fetchAsset);
   await verifySha256(moduleBytes, manifest?.variants?.core?.sha256);
-  if (bootstrapBytes) await verifySha256(bootstrapBytes, manifest?.bootstrap?.sha256);
   const worker = new WorkerClass(workerUrl, { type: "module" });
   const canvasRuntimes = new Map();
   const context = new ContextClass({
     worker,
     moduleBytes,
-    kernelId: `docs-${Math.random().toString(36).slice(2)}`,
+    kernelId: `www-${Math.random().toString(36).slice(2)}`,
     hostCalls: createHostServices({
-      dbName: "hara-docs",
+      dbName: "hara-www",
       canvasRuntimeForSession: (sessionId) => canvasRuntimes.get(sessionId)
     })
   });
@@ -83,19 +71,11 @@ export async function createDocsKernel({
   if (loadedResources.length > 0) {
     await context.call("register-resources", [loadedResources]);
   }
-  if (bootstrapBytes) {
-    await context.call("eval-halc", [bootstrapBytes]);
-    await context.call("eval", ["(ns user)"]);
-  }
   const string = (value) => JSON.stringify(String(value));
   const facade = {
     context,
     async createSession(name, { filesystem = `memory:${name}` } = {}) {
       const session = await context.createSession(name);
-      if (bootstrapBytes) {
-        await context.call("session/eval-halc", [name, bootstrapBytes]);
-        await session.eval("(ns user)");
-      }
       const mountId = await context.createFilesystem(filesystemDescriptor(filesystem));
       await session.attachFilesystem(mountId);
       const fsEval = async (form) =>
@@ -104,7 +84,7 @@ export async function createDocsKernel({
         id: name,
         filesystem,
         async eval(source) {
-          const prepared = prepareDocsEval(source);
+          const prepared = prepareLiveEval(source);
           return { value: await session.eval(prepared.source), label: prepared.label };
         },
         evalRaw: (source) => session.eval(source),
@@ -146,10 +126,9 @@ export async function createDocsKernel({
     if (!response.ok) throw new Error(`${specification.url}: ${response.status}`);
     const bytes = await response.arrayBuffer();
     await verifySha256(bytes, specification.sha256);
-    const feature = await createDocsKernel({
+    const feature = await createBrowserKernel({
       wasmUrl: specification.url,
       workerUrl,
-      manifest: { variants: { core: specification }, bootstrap: manifest.bootstrap },
       resources,
       fetchAsset: async (url) => url === specification.url ? new Response(bytes) : fetchAsset(url),
       WorkerClass,
@@ -160,3 +139,6 @@ export async function createDocsKernel({
   };
   return facade;
 }
+
+// @hara-lang/live resolves this export name when loading a kernel module URL.
+export const createDocsKernel = createBrowserKernel;

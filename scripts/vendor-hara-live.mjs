@@ -23,7 +23,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const siteRoot = fileURLToPath(new URL("..", import.meta.url));
-const haraRoot = path.resolve(process.env.HARA_LANG_ROOT ?? path.join(siteRoot, "..", "hara.lang"));
+const workspaceRoot = path.resolve(process.env.HARA_WORKSPACE_ROOT ?? path.join(siteRoot, "..", ".."));
+const haraRoot = path.join(workspaceRoot, "technology", "hara");
+const haraUiRoot = path.join(workspaceRoot, "technology", "hara-ui");
+const haraDocsRoot = path.join(workspaceRoot, "website", "hara-docs");
 
 const RUNTIME_BASE = "/hara-runtime";
 const vendorDir = path.join(siteRoot, "vendor", "hara-live");
@@ -58,7 +61,7 @@ async function copyFiles(sourceDir, files, targetDir, { transform = null, label 
 
 /** 1. The live card package source (bundled by Astro via relative imports). */
 async function vendorLivePackage() {
-  const sourceDir = path.join(haraRoot, "website/packages/live/src");
+  const sourceDir = path.join(haraUiRoot, "packages/live/src");
   if (!(await exists(sourceDir))) {
     if (await exists(path.join(vendorDir, "live-card.js"))) {
       note(`hara.lang live package not found at ${sourceDir}; keeping existing vendor/hara-live`);
@@ -76,7 +79,9 @@ async function vendorLivePackage() {
 
 /** 2. The WASM runtime tree the card boots from, served at /hara-runtime. */
 async function vendorRuntime() {
-  const builtRuntime = path.join(haraRoot, "target/www/runtime");
+  const builtRuntime = path.resolve(
+    process.env.HARA_RUNTIME_ROOT ?? path.join(haraRoot, "core", "target", "www", "runtime")
+  );
   const runtimeSource = (await exists(path.join(builtRuntime, "kernel-manifest.json")))
     ? builtRuntime
     : null;
@@ -114,7 +119,7 @@ async function vendorKernelClient(freshRuntime) {
     }
     return;
   }
-  const kernelClient = path.join(haraRoot, "docs/docs/javascripts/kernel.js");
+  const kernelClient = path.join(haraDocsRoot, "docs/javascripts/kernel.js");
   if (await exists(kernelClient)) {
     const source = await readFile(kernelClient, "utf8");
     await writeFile(
@@ -128,7 +133,7 @@ async function vendorKernelClient(freshRuntime) {
 
   // defaultResources() in the live kernel resolves studio.store/studio.fs
   // from <docsAssetsBase>/rust/studio/hal/.
-  const halSource = path.join(haraRoot, "docs/docs/rust/studio/hal");
+  const halSource = path.join(haraDocsRoot, "docs/rust/studio/hal");
   const halTarget = path.join(runtimeDir, "rust/studio/hal");
   const halFiles = ["store.hal", "fs.hal"];
   const halCount = await copyFiles(halSource, halFiles, halTarget, { label: "docs hal" });
