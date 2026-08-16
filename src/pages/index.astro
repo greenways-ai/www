@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
-import HaraPlayground from "../components/HaraPlayground.astro";
 import "../styles/world-home.css";
 
 const slides = [
@@ -261,11 +260,73 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
         </article>
       </div>
 
-      <div class="world-code-intro">
-        <p class="world-kicker">HARA IS THE LISP UNDERNEATH IT ALL</p>
-        <p>Edit the live Hara snippet below and run it in the page.</p>
+      <div class="world-workbench" aria-label="Preview of the Greenways programmable publishing studio">
+        <header class="world-workbench__bar">
+          <div class="world-workbench__project">
+            <span class="world-workbench__mark" aria-hidden="true">◇</span>
+            <div><small>PUBLICATION</small><strong>The Garden at Dusk</strong></div>
+          </div>
+          <nav aria-label="Example workspace views">
+            <span class="is-active">Compose</span>
+            <span>World</span>
+            <span>Reader</span>
+          </nav>
+          <p><span aria-hidden="true">●</span> Edition 03 · Private draft</p>
+        </header>
+
+        <div class="world-workbench__body">
+          <aside class="world-workbench__outline" aria-label="Example publication outline">
+            <small>OUTLINE</small>
+            <ol>
+              <li class="is-active"><span>01</span> Arrival</li>
+              <li><span>02</span> The glasshouse</li>
+              <li><span>03</span> Night garden</li>
+              <li><span>04</span> Field notes</li>
+            </ol>
+            <div class="world-workbench__sources">
+              <small>SOURCES</small>
+              <p>12 images</p>
+              <p>4 recordings</p>
+              <p>27 notes</p>
+            </div>
+          </aside>
+
+          <section class="world-workbench__canvas" aria-label="Example spatial publication canvas">
+            <img
+              src="/artwork/greenways/peacock-garden-day.webp"
+              alt="A luminous garden publication viewed in the Greenways spatial editor"
+              loading="lazy"
+            />
+            <div class="world-workbench__viewport-top" aria-hidden="true">
+              <span>SCENE / ARRIVAL</span><span>CAMERA 01</span>
+            </div>
+            <div class="world-workbench__node world-workbench__node--one" aria-hidden="true"><span>1</span> Opening text</div>
+            <div class="world-workbench__node world-workbench__node--two" aria-hidden="true"><span>2</span> Reader path</div>
+            <div class="world-workbench__node world-workbench__node--three" aria-hidden="true"><span>3</span> Sound cue</div>
+            <p class="world-workbench__canvas-caption">Move between prose and place without leaving the publication.</p>
+          </section>
+
+          <aside class="world-workbench__inspector" aria-label="Example programmable publication inspector">
+            <div class="world-workbench__tabs"><span>PROPERTIES</span><span class="is-active">HARA</span></div>
+            <small>EDITION COMMAND</small>
+            <pre><code>(publish/edition
+  {:title "The Garden at Dusk"
+   :forms [:book :world]
+   :opening :arrival
+   :audience :public})</code></pre>
+            <div class="world-workbench__agent">
+              <span aria-hidden="true">✦</span>
+              <div><small>EDITOR AGENT</small><p>Three passages are not yet connected to the reader path.</p></div>
+            </div>
+          </aside>
+        </div>
+
+        <footer class="world-workbench__command">
+          <span>M-x</span>
+          <strong>publish-edition</strong>
+          <p>Ready · web preview current</p>
+        </footer>
       </div>
-      <HaraPlayground />
     </section>
 
     <section id="publish" class="world-section world-section--standards">
