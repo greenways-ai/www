@@ -1,39 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
-import "../styles/world-home.css";
+import "../styles/publishing-home.css";
 
 const slides = [
   {
-    title: "Celestial Promenade — immersive essays",
+    title: "FIG. 01 / ESSAY",
     light: "/artwork/greenways/celestial-promenade-day.webp",
     dark: "/artwork/greenways/celestial-promenade-night.webp",
     lightMobile: "/artwork/greenways/celestial-promenade-day-mobile.webp",
     darkMobile: "/artwork/greenways/celestial-promenade-night-mobile.webp"
   },
   {
-    title: "Peacock Garden — spatial editions",
+    title: "FIG. 02 / WORLD",
     light: "/artwork/greenways/peacock-garden-day.webp",
     dark: "/artwork/greenways/peacock-garden-night.webp",
     lightMobile: "/artwork/greenways/peacock-garden-day-mobile.webp",
     darkMobile: "/artwork/greenways/peacock-garden-night-mobile.webp"
   },
   {
-    title: "Jeweled Archipelago — living books",
+    title: "FIG. 03 / BOOK",
     light: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day-mobile.webp",
     darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night-mobile.webp"
   },
   {
-    title: "Solar Steppe Observatories — research worlds",
+    title: "FIG. 04 / RESEARCH",
     light: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day-mobile.webp",
     darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night-mobile.webp"
   },
   {
-    title: "Aurora Conservatory Belt — digital exhibitions",
+    title: "FIG. 05 / EXHIBITION",
     light: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day-mobile.webp",
@@ -46,346 +46,266 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
 ---
 
 <BaseLayout
-  title="Greenways | Publish worlds, books and living documents"
-  description="Greenways is a spatial self-publishing platform for creating books, living documents, exhibitions and 3D worlds, then publishing them directly to the web."
+  title="Greenways | Publication system"
+  description="Create documents, books and 3D worlds. Publish them to the web."
   path="/"
   image="https://oss.greenways.ai/visual-language/assets/og-greenways.jpg"
-  imageAlt="A luminous three-dimensional publication made with Greenways"
-  bodyClass="world-home-page"
+  imageAlt="Greenways publication system"
+  bodyClass="manual-home-page"
   immersive={true}
 >
-  <div slot="header" class="world-header-shell">
-    <header class="world-site-header">
-      <a class="world-site-header__brand" href="/" aria-label="Greenways home">
-        <img src="/sigil.svg" alt="" width="42" height="42" />
-        <span>Greenways</span>
+  <div slot="header" class="manual-header-shell">
+    <header class="manual-header">
+      <a class="manual-header__brand" href="/" aria-label="Greenways home">
+        <img src="/sigil.svg" alt="" width="38" height="38" />
+        <span>GREENWAYS</span>
       </a>
 
-      <nav class="world-site-header__nav" aria-label="Primary navigation">
-        <a href="#publishing">Publishing</a>
-        <a href="#studio">Studio</a>
-        <a href="#programmable">Programmable</a>
+      <p class="manual-header__model">PUBLICATION SYSTEM / GW-01</p>
+
+      <nav class="manual-header__nav" aria-label="Primary navigation">
+        <a href="#procedure">01 USE</a>
+        <a href="#forms">02 FORMS</a>
+        <a href="#layout">03 LAYOUT</a>
+        <a href="#control">04 CONTROL</a>
       </nav>
 
-      <a class="world-site-header__cta" href="#early-access">Join early access</a>
+      <a class="manual-header__access" href="#early-access">ACCESS CARD</a>
     </header>
   </div>
 
-  <div class="world-home">
+  <div class="manual-home">
     <section
-      class="world-hero"
+      class="manual-cover"
       data-world-carousel
       aria-roledescription="carousel"
-      aria-label="Greenways spatial publications"
+      aria-label="Greenways publication examples"
       tabindex="0"
     >
-      <div class="world-carousel__track">
-        {slides.map((slide, index) => (
-          <article
-            class:list={["world-slide", { "is-active": index === 0 }]}
-            data-world-slide
-            data-title={slide.title}
-            aria-hidden={index === 0 ? "false" : "true"}
-          >
-            <div
-              class="world-slide__art gw-themed-artwork"
-              style={artworkStyle(slide)}
-              aria-hidden="true"
-            ></div>
-          </article>
-        ))}
-      </div>
-
-      <div class="world-hero__wash" aria-hidden="true"></div>
-
-      <div class="world-hero__content">
-        <p class="world-kicker">INDEPENDENT PUBLISHING, MADE SPATIAL</p>
-        <h1>Publish a world.<br /><span>Not just a page.</span></h1>
-        <p class="world-hero__lead">
-          Greenways is a self-publishing platform for books, journals,
-          documents, exhibitions and 3D worlds. Create everything in one
-          programmable studio, then publish it directly to the web.
-        </p>
-        <div class="world-hero__actions">
-          <a class="world-button world-button--primary" href="#early-access">Join early access</a>
-          <a class="world-button world-button--quiet" href="#studio">Explore the studio</a>
+      <div class="manual-cover__copy">
+        <div class="manual-cover__index">
+          <span>OPERATING CARD</span>
+          <span>REV. A / 2026</span>
         </div>
-        <p class="world-hero__note">
-          For writers, artists, educators, studios and independent publishers.
+
+        <p class="manual-label">SELF-PUBLISHING / SPATIAL</p>
+        <h1>MAKE.<br />ARRANGE.<br />PUBLISH.</h1>
+        <p class="manual-cover__summary">
+          Documents, books and 3D worlds.<br />One workspace. Web output.
         </p>
+
+        <dl class="manual-cover__spec">
+          <div><dt>INPUT</dt><dd>TEXT / MEDIA / SPACE / CODE</dd></div>
+          <div><dt>OUTPUT</dt><dd>WEB PUBLICATION</dd></div>
+          <div><dt>ENGINE</dt><dd>HARA</dd></div>
+        </dl>
+
+        <div class="manual-cover__actions">
+          <a class="manual-button manual-button--primary" href="#early-access">REQUEST ACCESS</a>
+          <a class="manual-button" href="#procedure">READ PROCEDURE ↓</a>
+        </div>
       </div>
 
-      <div class="world-carousel__controls">
-        <button
-          class="world-carousel__arrow"
-          type="button"
-          data-carousel-previous
-          aria-label="Show previous publication"
-        >
-          ←
-        </button>
-
-        <div class="world-carousel__progress" aria-label="Choose a publication">
+      <div class="manual-figure">
+        <div class="manual-figure__stage">
           {slides.map((slide, index) => (
-            <button
-              class:list={["world-carousel__dot", { "is-active": index === 0 }]}
-              type="button"
-              data-carousel-dot={index}
-              aria-label={`Show ${slide.title}`}
-              aria-current={index === 0 ? "true" : undefined}
-            ></button>
+            <article
+              class:list={["manual-slide", { "is-active": index === 0 }]}
+              data-world-slide
+              data-title={slide.title}
+              aria-hidden={index === 0 ? "false" : "true"}
+            >
+              <div
+                class="manual-slide__art"
+                style={artworkStyle(slide)}
+                aria-hidden="true"
+              ></div>
+            </article>
           ))}
+
+          <div class="manual-figure__grid" aria-hidden="true"></div>
+          <div class="manual-callout manual-callout--a" aria-hidden="true"><span>A</span> READER PATH</div>
+          <div class="manual-callout manual-callout--b" aria-hidden="true"><span>B</span> MEDIA OBJECT</div>
+          <div class="manual-callout manual-callout--c" aria-hidden="true"><span>C</span> VIEWPOINT</div>
         </div>
 
-        <div class="world-carousel__caption">
-          <span data-carousel-count>01 / 05</span>
-          <strong data-carousel-caption>Celestial Promenade — immersive essays</strong>
+        <div class="manual-figure__controls">
+          <button type="button" data-carousel-previous aria-label="Show previous figure">←</button>
+          <div class="manual-figure__caption">
+            <span data-carousel-count>01 / 05</span>
+            <strong data-carousel-caption>FIG. 01 / ESSAY</strong>
+          </div>
+          <div class="manual-figure__dots" aria-label="Choose a figure">
+            {slides.map((slide, index) => (
+              <button
+                class:list={[{ "is-active": index === 0 }]}
+                type="button"
+                data-carousel-dot={index}
+                aria-label={`Show ${slide.title}`}
+                aria-current={index === 0 ? "true" : undefined}
+              ></button>
+            ))}
+          </div>
+          <button type="button" data-carousel-next aria-label="Show next figure">→</button>
         </div>
-
-        <button
-          class="world-carousel__arrow"
-          type="button"
-          data-carousel-next
-          aria-label="Show next publication"
-        >
-          →
-        </button>
       </div>
 
-      <p class="world-sr-only" aria-live="polite" data-carousel-status>
-        Showing Celestial Promenade, publication 1 of 5.
+      <p class="manual-sr-only" aria-live="polite" data-carousel-status>
+        Showing figure 1 of 5.
       </p>
     </section>
 
-    <section id="publishing" class="world-section world-section--worlds">
-      <header class="world-section__intro">
-        <p class="world-kicker">THE PUBLISHING PLATFORM</p>
-        <h2>Work that can be read, explored and inhabited.</h2>
-        <p>
-          A Greenways publication can begin as a paragraph and grow into a
-          book, a room, a gallery, a simulation or an entire world. The medium
-          follows the idea instead of forcing the idea into a template.
-        </p>
+    <section id="procedure" class="manual-panel">
+      <header class="manual-panel__header">
+        <span class="manual-panel__number">01</span>
+        <div><small>OPERATING SEQUENCE</small><h2>USE IN THREE STEPS</h2></div>
+        <span class="manual-panel__code">PROC. GW-01</span>
       </header>
 
-      <div class="world-principles">
-        <article>
-          <span class="world-principle__icon" aria-hidden="true">◇</span>
-          <p class="world-principle__label">WORLDS</p>
-          <h3>Build a place around your ideas</h3>
-          <p>Give readers somewhere to enter, wander, return to and share—not only a page to scroll.</p>
-        </article>
-        <article>
-          <span class="world-principle__icon" aria-hidden="true">▤</span>
-          <p class="world-principle__label">BOOKS</p>
-          <h3>Let long-form work open into space</h3>
-          <p>Combine chapters, images, sound, objects and scenes without giving up the clarity of reading.</p>
-        </article>
-        <article>
-          <span class="world-principle__icon" aria-hidden="true">◎</span>
-          <p class="world-principle__label">LIVING DOCUMENTS</p>
-          <h3>Publish work that keeps growing</h3>
-          <p>Release an edition, develop it in public and give every project a durable home on the web.</p>
-        </article>
-      </div>
+      <ol class="manual-steps">
+        <li>
+          <span class="manual-step__mark">1</span>
+          <div><strong>WRITE</strong><p>Enter text, image, sound or 3D.</p></div>
+        </li>
+        <li>
+          <span class="manual-step__mark">2</span>
+          <div><strong>ARRANGE</strong><p>Place pages, rooms, objects and paths.</p></div>
+        </li>
+        <li>
+          <span class="manual-step__mark">3</span>
+          <div><strong>PUBLISH</strong><p>Release a web edition. Update as required.</p></div>
+        </li>
+      </ol>
     </section>
 
-    <section id="studio" class="world-section world-section--studio">
-      <div class="world-studio__copy">
-        <p class="world-kicker">ONE CREATIVE ENVIRONMENT</p>
-        <h2>Write the book. Build the world. Shape the reader’s path.</h2>
-        <p>
-          Greenways brings a document editor, spatial canvas, media studio and
-          publishing desk into one environment. Move from prose to scene
-          without moving your work between disconnected products.
-        </p>
-        <a class="world-text-link" href="#programmable">See why the studio is programmable →</a>
-      </div>
-
-      <div class="world-widget-board" aria-label="Greenways publishing studio">
-        <article class="world-widget world-widget--wide">
-          <span class="world-widget__icon" aria-hidden="true">¶</span>
-          <div><small>MANUSCRIPT</small><h3>Write and structure</h3><p>Develop essays, books, notes and scripts beside the world they belong to.</p></div>
-        </article>
-        <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">◇</span>
-          <div><small>SPACE</small><h3>Compose scenes</h3><p>Arrange rooms, objects, pathways and viewpoints on a spatial canvas.</p></div>
-        </article>
-        <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">◉</span>
-          <div><small>MEDIA</small><h3>Direct the atmosphere</h3><p>Bring image, sound, motion and interaction into the same publication.</p></div>
-        </article>
-        <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">⌁</span>
-          <div><small>READING</small><h3>Design the journey</h3><p>Choose what readers encounter, in what order and at what depth.</p></div>
-        </article>
-        <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">↗</span>
-          <div><small>WEB</small><h3>Publish directly</h3><p>Turn the project into a destination people can open and revisit on the web.</p></div>
-        </article>
-        <article class="world-widget world-widget--wide">
-          <span class="world-widget__icon" aria-hidden="true">∞</span>
-          <div><small>EDITIONS</small><h3>Keep the work alive</h3><p>Release, revise and expand without losing the identity of the publication.</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="programmable" class="world-section world-section--language">
-      <header class="world-section__intro">
-        <p class="world-kicker">THE PROGRAMMABLE STUDIO</p>
-        <h2>The freedom of Emacs, brought into three dimensions.</h2>
-        <p>
-          Greenways is not a fixed page builder. Its editors, commands, views,
-          automations and agents can be reshaped around the way you think.
-          Hara—the Lisp beneath Greenways—makes the studio itself part of the
-          creative material.
-        </p>
+    <section id="forms" class="manual-panel">
+      <header class="manual-panel__header">
+        <span class="manual-panel__number">02</span>
+        <div><small>OUTPUT FORMS</small><h2>SELECT PUBLICATION TYPE</h2></div>
+        <span class="manual-panel__code">FORM SET / A</span>
       </header>
 
-      <div class="world-programmable-grid">
+      <div class="manual-forms">
         <article>
-          <small>EDITORS</small>
-          <h3>Arrange your own workspace</h3>
-          <p>Place manuscript, outline, scene, references, timeline and reader preview beside each other.</p>
+          <div class="manual-form__diagram manual-form__diagram--document" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="manual-form__id">F-01</div>
+          <h3>DOCUMENT</h3>
+          <p>NOTES / REPORTS / MANUALS</p>
         </article>
         <article>
-          <small>COMMANDS</small>
-          <h3>Turn habits into tools</h3>
-          <p>Make repeated work into a command, an editor or a reusable extension instead of another manual step.</p>
+          <div class="manual-form__diagram manual-form__diagram--book" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="manual-form__id">F-02</div>
+          <h3>BOOK</h3>
+          <p>CHAPTERS / MEDIA / EDITIONS</p>
         </article>
         <article>
-          <small>AGENTS</small>
-          <h3>Give intelligence a place to work</h3>
-          <p>Let agents operate inside the publication with visible tools, context and boundaries.</p>
+          <div class="manual-form__diagram manual-form__diagram--world" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="manual-form__id">F-03</div>
+          <h3>WORLD</h3>
+          <p>SCENES / OBJECTS / PATHS</p>
         </article>
       </div>
+    </section>
 
-      <div class="world-workbench" aria-label="Preview of the Greenways programmable publishing studio">
-        <header class="world-workbench__bar">
-          <div class="world-workbench__project">
-            <span class="world-workbench__mark" aria-hidden="true">◇</span>
-            <div><small>PUBLICATION</small><strong>The Garden at Dusk</strong></div>
-          </div>
-          <nav aria-label="Example workspace views">
-            <span class="is-active">Compose</span>
-            <span>World</span>
-            <span>Reader</span>
-          </nav>
-          <p><span aria-hidden="true">●</span> Edition 03 · Private draft</p>
-        </header>
+    <section id="layout" class="manual-panel">
+      <header class="manual-panel__header">
+        <span class="manual-panel__number">03</span>
+        <div><small>SYSTEM LAYOUT</small><h2>ONE WORKSPACE</h2></div>
+        <span class="manual-panel__code">FIG. GW-03</span>
+      </header>
 
-        <div class="world-workbench__body">
-          <aside class="world-workbench__outline" aria-label="Example publication outline">
-            <small>OUTLINE</small>
-            <ol>
-              <li class="is-active"><span>01</span> Arrival</li>
-              <li><span>02</span> The glasshouse</li>
-              <li><span>03</span> Night garden</li>
-              <li><span>04</span> Field notes</li>
-            </ol>
-            <div class="world-workbench__sources">
-              <small>SOURCES</small>
-              <p>12 images</p>
-              <p>4 recordings</p>
-              <p>27 notes</p>
-            </div>
-          </aside>
+      <div class="manual-schematic" aria-label="Greenways workspace diagram">
+        <aside class="manual-schematic__rail manual-schematic__rail--input">
+          <small>INPUT</small>
+          <span>TEXT</span>
+          <span>IMAGE</span>
+          <span>SOUND</span>
+          <span>3D</span>
+        </aside>
 
-          <section class="world-workbench__canvas" aria-label="Example spatial publication canvas">
-            <img
-              src="/artwork/greenways/peacock-garden-day.webp"
-              alt="A luminous garden publication viewed in the Greenways spatial editor"
-              loading="lazy"
-            />
-            <div class="world-workbench__viewport-top" aria-hidden="true">
-              <span>SCENE / ARRIVAL</span><span>CAMERA 01</span>
-            </div>
-            <div class="world-workbench__node world-workbench__node--one" aria-hidden="true"><span>1</span> Opening text</div>
-            <div class="world-workbench__node world-workbench__node--two" aria-hidden="true"><span>2</span> Reader path</div>
-            <div class="world-workbench__node world-workbench__node--three" aria-hidden="true"><span>3</span> Sound cue</div>
-            <p class="world-workbench__canvas-caption">Move between prose and place without leaving the publication.</p>
-          </section>
+        <figure class="manual-schematic__viewport">
+          <img
+            src="/artwork/greenways/peacock-garden-day.webp"
+            alt="A spatial publication in the Greenways workspace"
+            loading="lazy"
+          />
+          <figcaption>WORK AREA / MANUSCRIPT + SCENE + READER VIEW</figcaption>
+          <span class="manual-schematic__point manual-schematic__point--one">1</span>
+          <span class="manual-schematic__point manual-schematic__point--two">2</span>
+          <span class="manual-schematic__point manual-schematic__point--three">3</span>
+        </figure>
 
-          <aside class="world-workbench__inspector" aria-label="Example programmable publication inspector">
-            <div class="world-workbench__tabs"><span>PROPERTIES</span><span class="is-active">HARA</span></div>
-            <small>EDITION COMMAND</small>
-            <pre><code>(publish/edition
-  &#123;:title "The Garden at Dusk"
-   :forms [:book :world]
-   :opening :arrival
-   :audience :public&#125;)</code></pre>
-            <div class="world-workbench__agent">
-              <span aria-hidden="true">✦</span>
-              <div><small>EDITOR AGENT</small><p>Three passages are not yet connected to the reader path.</p></div>
-            </div>
-          </aside>
+        <aside class="manual-schematic__rail manual-schematic__rail--output">
+          <small>OUTPUT</small>
+          <span>URL</span>
+          <span>EDITION</span>
+          <span>ACCESS</span>
+          <span>UPDATE</span>
+        </aside>
+
+        <div class="manual-schematic__control">
+          <small>CONTROL RAIL</small>
+          <span>HARA</span><b>→</b><span>COMMANDS</span><b>→</b><span>EDITORS</span><b>→</b><span>AGENTS</span>
         </div>
-
-        <footer class="world-workbench__command">
-          <span>M-x</span>
-          <strong>publish-edition</strong>
-          <p>Ready · web preview current</p>
-        </footer>
       </div>
     </section>
 
-    <section id="publish" class="world-section world-section--standards">
-      <div class="world-standards__panel">
-        <div>
-          <p class="world-kicker">PUBLISH TO THE OPEN WEB</p>
-          <h2>From private draft to a place readers can return to.</h2>
+    <section id="control" class="manual-panel">
+      <header class="manual-panel__header">
+        <span class="manual-panel__number">04</span>
+        <div><small>CONTROL SYSTEM</small><h2>PROGRAM THE WORKSPACE</h2></div>
+        <span class="manual-panel__code">HARA / LISP</span>
+      </header>
+
+      <div class="manual-control">
+        <div class="manual-control__equation">
+          <span>HARA</span><b>→</b><span>COMMANDS</span><b>→</b><span>EDITORS</span><b>→</b><span>PUBLICATION</span>
         </div>
-        <p>
-          Choose when the work is ready, release an edition and keep shaping
-          it over time. Greenways is designed to make the publication—not the
-          social feed—the centre of the relationship with your audience.
-        </p>
-      </div>
-
-      <div class="world-standards__grid">
-        <article><h3>A home of your own</h3><p>Give each body of work a distinct identity, address and visual language.</p></article>
-        <article><h3>Reading beyond the feed</h3><p>Invite people into a sustained experience instead of competing for a moment of attention.</p></article>
-        <article><h3>Room to keep growing</h3><p>Start with a document today and let it become a world as the work develops.</p></article>
+        <div class="manual-control__notes">
+          <article><small>EMACS PRINCIPLE</small><strong>EDITOR MAY BE EXTENDED.</strong></article>
+          <article><small>3D PRINCIPLE</small><strong>SPACE IS PART OF THE DOCUMENT.</strong></article>
+          <article><small>OPERATING RULE</small><strong>MODIFY THE WORKSPACE TO SUIT THE WORK.</strong></article>
+        </div>
       </div>
     </section>
 
-    <section class="world-builder-callout">
-      <div>
-        <p class="world-kicker">FOR INDEPENDENT CREATORS</p>
-        <h2>Your publication should feel like yours.</h2>
-        <p>
-          No platform voice. No template ceiling. Start with a chapter, a
-          collection or a room, then make the publication only you could make.
-        </p>
+    <section id="release" class="manual-panel">
+      <header class="manual-panel__header">
+        <span class="manual-panel__number">05</span>
+        <div><small>WEB OUTPUT</small><h2>RELEASE AN EDITION</h2></div>
+        <span class="manual-panel__code">PUB. GW-05</span>
+      </header>
+
+      <div class="manual-output">
+        <dl>
+          <div><dt>ADDRESS</dt><dd>PROJECT.GREENWAYS.AI</dd></div>
+          <div><dt>EDITION</dt><dd>01 / 02 / 03 / …</dd></div>
+          <div><dt>ACCESS</dt><dd>PUBLIC / PRIVATE</dd></div>
+          <div><dt>UPDATE</dt><dd>IN PLACE</dd></div>
+        </dl>
+        <p>THE PUBLICATION IS THE PRIMARY OBJECT.</p>
       </div>
-      <a class="world-button world-button--primary" href="#early-access">Join early access</a>
     </section>
 
-    <aside class="world-oss-note" aria-label="Greenways foundations">
-      <p><strong>For the curious:</strong> Greenways is built on Hara and a set of open foundations.</p>
-      <a href="https://oss.greenways.ai/">See the foundations ↗</a>
+    <aside class="manual-foundations" aria-label="Technical foundations">
+      <span>SERVICE NOTE / HARA + OPEN FOUNDATIONS</span>
+      <a href="https://oss.greenways.ai/">TECHNICAL INDEX ↗</a>
     </aside>
 
     <BetaForm />
   </div>
 
-  <footer slot="footer" class="world-footer">
-    <div>
-      <a class="world-brand" href="/" aria-label="Greenways home">
-        <img src="/sigil.svg" alt="" width="42" height="42" />
-        <span>Greenways</span>
-      </a>
-      <p>Publishing for work that deserves a world.</p>
-    </div>
+  <footer slot="footer" class="manual-footer">
+    <div><img src="/sigil.svg" alt="" width="34" height="34" /><strong>GREENWAYS</strong></div>
+    <p>PUBLICATION SYSTEM / GW-01 / REV. A</p>
     <nav aria-label="Footer navigation">
-      <a href="#publishing">Publishing</a>
-      <a href="#studio">Studio</a>
-      <a href="#programmable">Programmable</a>
-      <a href="#early-access">Early access</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="https://oss.greenways.ai/">Foundations ↗</a>
+      <a href="#procedure">USE</a>
+      <a href="#forms">FORMS</a>
+      <a href="#control">CONTROL</a>
+      <a href="/privacy/">PRIVACY</a>
+      <a href="https://oss.greenways.ai/">TECHNICAL INDEX ↗</a>
     </nav>
-    <small>© 2026 Greenways Pty Ltd. Greenways marks and artwork reserved.</small>
+    <small>© 2026 GREENWAYS PTY LTD.</small>
   </footer>
 </BaseLayout>
 
@@ -417,10 +337,10 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
         if (isActive) dot.setAttribute("aria-current", "true");
         else dot.removeAttribute("aria-current");
       });
-      const title = slides[activeIndex]?.dataset.title ?? "Spatial publication";
+      const title = slides[activeIndex]?.dataset.title ?? "FIGURE";
       if (count) count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
       if (caption) caption.textContent = title;
-      if (announce && status) status.textContent = `Showing ${title}, publication ${activeIndex + 1} of ${slides.length}.`;
+      if (announce && status) status.textContent = `Showing ${title}, figure ${activeIndex + 1} of ${slides.length}.`;
     };
 
     const stop = () => {
@@ -431,7 +351,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
     const start = () => {
       stop();
       if (reducedMotion.matches) return;
-      timer = window.setInterval(() => render(activeIndex + 1, false), 7000);
+      timer = window.setInterval(() => render(activeIndex + 1, false), 8000);
     };
 
     previous?.addEventListener("click", () => {

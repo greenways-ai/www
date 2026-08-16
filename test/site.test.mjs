@@ -5,7 +5,7 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const source = (path) => readFile(new URL(path, root), "utf8");
 
-test("the apex site leads with spatial self-publishing", async () => {
+test("the apex site reads like a concise publication operating manual", async () => {
   const [config, layout, home] = await Promise.all([
     source("astro.config.mjs"),
     source("src/layouts/BaseLayout.astro"),
@@ -13,25 +13,29 @@ test("the apex site leads with spatial self-publishing", async () => {
   ]);
 
   assert.match(config, /site: "https:\/\/greenways\.ai"/);
-  assert.match(home, /Publish a world/);
-  assert.match(home, /INDEPENDENT PUBLISHING, MADE SPATIAL/);
-  assert.match(home, /THE PUBLISHING PLATFORM/);
-  assert.match(home, /ONE CREATIVE ENVIRONMENT/);
-  assert.match(home, /THE PROGRAMMABLE STUDIO/);
-  assert.match(home, /PUBLISH TO THE OPEN WEB/);
-  assert.match(home, /The freedom of Emacs, brought into three dimensions/);
-  assert.match(home, /world-workbench/);
-  assert.match(home, /publish-edition/);
-  assert.match(home, /For the curious/);
-  assert.match(home, /https:\/\/oss\.greenways\.ai\//);
-  assert.match(home, /Celestial Promenade/);
+  assert.match(home, /OPERATING CARD/);
+  assert.match(home, /MAKE\./);
+  assert.match(home, /ARRANGE\./);
+  assert.match(home, /PUBLISH\./);
+  assert.match(home, /USE IN THREE STEPS/);
+  assert.match(home, /SELECT PUBLICATION TYPE/);
+  assert.match(home, /ONE WORKSPACE/);
+  assert.match(home, /PROGRAM THE WORKSPACE/);
+  assert.match(home, /RELEASE AN EDITION/);
+  assert.match(home, /THE PUBLICATION IS THE PRIMARY OBJECT/);
+  assert.match(home, /EMACS PRINCIPLE/);
+  assert.match(home, /HARA \/ LISP/);
+  assert.match(home, /manual-header/);
+  assert.match(home, /manual-panel/);
   assert.match(home, /data-world-carousel/);
-  assert.match(home, /world-site-header/);
+  assert.match(home, /https:\/\/oss\.greenways\.ai\//);
+  assert.doesNotMatch(home, /Publish a world/);
+  assert.doesNotMatch(home, /INDEPENDENT PUBLISHING, MADE SPATIAL/);
+  assert.doesNotMatch(home, /The freedom of Emacs, brought into three dimensions/);
+  assert.doesNotMatch(home, /Join early access|Explore the studio/);
+  assert.doesNotMatch(home, /Your publication should feel like yours/);
   assert.doesNotMatch(home, /HaraPlayground/);
   assert.doesNotMatch(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
-  assert.doesNotMatch(home, /STUDIO WIDGETS|OPEN STANDARDS|We are big in open source/);
-  assert.doesNotMatch(home, /A high-trust world for creative work/);
-  assert.doesNotMatch(home, /Create together/);
   assert.match(layout, /immersive\?: boolean/);
   assert.match(layout, /<slot name="header"/);
   assert.match(layout, /<slot name="footer"/);
@@ -48,7 +52,7 @@ test("all four open foundations keep their dedicated routes", async () => {
   assert.match(projects, /license: "Apache-2\.0"/);
 });
 
-test("the early access form remains detectable by Netlify", async () => {
+test("the access card remains detectable by Netlify", async () => {
   const [component, skeleton] = await Promise.all([
     source("src/components/BetaForm.astro"),
     source("public/__forms.html")
@@ -65,13 +69,16 @@ test("the early access form remains detectable by Netlify", async () => {
     assert.match(component, new RegExp(`name="${field}"`));
     assert.match(skeleton, new RegExp(`name="${field}"`));
   }
-  assert.match(component, /Publish your first world/);
-  assert.match(component, /Request early access/);
+  assert.match(component, /COMPLETE ACCESS CARD/);
+  assert.match(component, /SUBMIT CARD/);
+  assert.match(component, /Provide email\. Mark intended output\. Submit form\./);
   assert.match(component, /action="\/thank-you\/"/);
   assert.match(component, /netlify-honeypot="bot-field"/);
+  assert.doesNotMatch(component, /Publish your first world/);
+  assert.doesNotMatch(component, /Tell us what you want to make/);
 });
 
-test("the first peacock-theme carousel scenes are available locally", async () => {
+test("the first manual figures are available locally", async () => {
   for (const name of [
     "celestial-promenade-day.webp",
     "celestial-promenade-night.webp",
@@ -87,10 +94,9 @@ test("the first peacock-theme carousel scenes are available locally", async () =
   }
 });
 
-test("the homepage keeps accessible carousel and motion controls", async () => {
-  const [home, styles, publishingStyles] = await Promise.all([
+test("the manual carousel remains accessible and motion-aware", async () => {
+  const [home, styles] = await Promise.all([
     source("src/pages/index.astro"),
-    source("src/styles/world-home.css"),
     source("src/styles/publishing-home.css")
   ]);
   assert.match(home, /aria-roledescription="carousel"/);
@@ -99,11 +105,12 @@ test("the homepage keeps accessible carousel and motion controls", async () => {
   assert.match(home, /data-carousel-next/);
   assert.match(home, /ArrowLeft/);
   assert.match(home, /ArrowRight/);
-  assert.match(home, /aria-label="Preview of the Greenways programmable publishing studio"/);
+  assert.match(home, /aria-label="Greenways workspace diagram"/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
-  assert.match(home, /world-site-header/);
-  assert.match(publishingStyles, /world-site-header__nav/);
-  assert.match(publishingStyles, /world-workbench__body/);
+  assert.match(styles, /manual-figure__stage/);
+  assert.match(styles, /manual-panel__header/);
+  assert.match(styles, /IBM Plex Mono/);
+  assert.match(styles, /--manual-orange/);
   assert.doesNotMatch(home, /SharedHeader/);
   assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
