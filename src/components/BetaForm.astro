@@ -1,62 +1,58 @@
----
-import "../styles/publishing-home.css";
----
-
 <section class="builder-access" id="early-access" aria-labelledby="builder-access-title">
-  <div class="builder-access__copy">
-    <p class="world-kicker">JOIN THE EARLY STUDIO</p>
-    <h2 id="builder-access-title">Publish your first world.</h2>
-    <p>
-      Tell us what you want to make. We are opening Greenways to writers,
-      artists, educators, studios and independent publishers who want their
-      work to become more than a page.
-    </p>
+  <header class="manual-panel__header">
+    <span class="manual-panel__number">06</span>
+    <div><small>ACCESS REQUEST</small><h2 id="builder-access-title">COMPLETE ACCESS CARD</h2></div>
+    <span class="manual-panel__code">FORM GW-A01</span>
+  </header>
+
+  <div class="builder-access__body">
+    <div class="builder-access__copy">
+      <p class="manual-label">INSTRUCTION</p>
+      <p>Provide email. Mark intended output. Submit form.</p>
+    </div>
+
+    <form
+      class="builder-access__form"
+      name="beta-access"
+      method="POST"
+      action="/thank-you/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="beta-access" />
+      <input type="hidden" name="subject" value="Greenways access request" />
+      <p class="honeypot"><label>Leave this empty <input name="bot-field" /></label></p>
+
+      <label>
+        <span>EMAIL</span>
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          placeholder="YOU@EXAMPLE.COM"
+          required
+        />
+      </label>
+
+      <fieldset>
+        <legend>INTENDED OUTPUT <span>/ OPTIONAL</span></legend>
+        <div class="builder-access__interests">
+          <label><input type="checkbox" name="interest_music" value="yes" /><span>SOUND</span></label>
+          <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>EXHIBITION</span></label>
+          <label><input type="checkbox" name="interest_3d" value="yes" /><span>WORLD</span></label>
+          <label><input type="checkbox" name="interest_publishing" value="yes" /><span>BOOK / DOCUMENT</span></label>
+          <label><input type="checkbox" name="interest_open_source" value="yes" /><span>EDITOR EXTENSION</span></label>
+        </div>
+      </fieldset>
+
+      <label class="builder-access__consent">
+        <input type="checkbox" name="consent" value="yes" required />
+        <span>Greenways may contact me about access. <a href="/privacy/">Privacy note.</a></span>
+      </label>
+
+      <button class="manual-button manual-button--primary" type="submit">
+        SUBMIT CARD →
+      </button>
+    </form>
   </div>
-
-  <form
-    class="builder-access__form"
-    name="beta-access"
-    method="POST"
-    action="/thank-you/"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-  >
-    <input type="hidden" name="form-name" value="beta-access" />
-    <input type="hidden" name="subject" value="Greenways publishing early access request" />
-    <p class="honeypot"><label>Leave this empty <input name="bot-field" /></label></p>
-
-    <label>
-      <span>Email address</span>
-      <input
-        type="email"
-        name="email"
-        autocomplete="email"
-        placeholder="you@example.com"
-        required
-      />
-    </label>
-
-    <fieldset>
-      <legend>What would you publish? <span>Optional</span></legend>
-      <div class="builder-access__interests">
-        <label><input type="checkbox" name="interest_music" value="yes" /><span>Music and sound</span></label>
-        <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>Art and exhibitions</span></label>
-        <label><input type="checkbox" name="interest_3d" value="yes" /><span>3D worlds</span></label>
-        <label><input type="checkbox" name="interest_publishing" value="yes" /><span>Books and documents</span></label>
-        <label><input type="checkbox" name="interest_open_source" value="yes" /><span>Editors and extensions</span></label>
-      </div>
-    </fieldset>
-
-    <label class="builder-access__consent">
-      <input type="checkbox" name="consent" value="yes" required />
-      <span>
-        Greenways may use these details to contact me about early access. See
-        the <a href="/privacy/">privacy note</a>.
-      </span>
-    </label>
-
-    <button class="world-button world-button--primary" type="submit">
-      Request early access <span aria-hidden="true">→</span>
-    </button>
-  </form>
 </section>
