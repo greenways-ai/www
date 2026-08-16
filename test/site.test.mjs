@@ -5,7 +5,7 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const source = (path) => readFile(new URL(path, root), "utf8");
 
-test("the apex site leads with connected-world builders", async () => {
+test("the apex site leads with spatial self-publishing", async () => {
   const [config, layout, home] = await Promise.all([
     source("astro.config.mjs"),
     source("src/layouts/BaseLayout.astro"),
@@ -13,18 +13,22 @@ test("the apex site leads with connected-world builders", async () => {
   ]);
 
   assert.match(config, /site: "https:\/\/greenways\.ai"/);
-  assert.match(home, /Anyone can build a world/);
-  assert.match(home, /BUILD CONNECTED WORLDS/);
-  assert.match(home, /STUDIO WIDGETS/);
-  assert.match(home, /OPEN STANDARDS/);
-  assert.match(home, /We are big in open source/);
+  assert.match(home, /Publish a world/);
+  assert.match(home, /INDEPENDENT PUBLISHING, MADE SPATIAL/);
+  assert.match(home, /THE PUBLISHING PLATFORM/);
+  assert.match(home, /ONE CREATIVE ENVIRONMENT/);
+  assert.match(home, /THE PROGRAMMABLE STUDIO/);
+  assert.match(home, /PUBLISH TO THE OPEN WEB/);
+  assert.match(home, /The freedom of Emacs, brought into three dimensions/);
+  assert.match(home, /For the curious/);
   assert.match(home, /https:\/\/oss\.greenways\.ai\//);
   assert.match(home, /Celestial Promenade/);
   assert.match(home, /data-world-carousel/);
-  assert.match(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
+  assert.match(home, /world-site-header/);
+  assert.doesNotMatch(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
+  assert.doesNotMatch(home, /STUDIO WIDGETS|OPEN STANDARDS|We are big in open source/);
   assert.doesNotMatch(home, /A high-trust world for creative work/);
   assert.doesNotMatch(home, /Create together/);
-  assert.doesNotMatch(home, /THE CELESTIAL WORLD|One atelier|Many forms/);
   assert.match(layout, /immersive\?: boolean/);
   assert.match(layout, /<slot name="header"/);
   assert.match(layout, /<slot name="footer"/);
@@ -58,7 +62,8 @@ test("the early access form remains detectable by Netlify", async () => {
     assert.match(component, new RegExp(`name="${field}"`));
     assert.match(skeleton, new RegExp(`name="${field}"`));
   }
-  assert.match(component, /Build your first experience/);
+  assert.match(component, /Publish your first world/);
+  assert.match(component, /Request early access/);
   assert.match(component, /action="\/thank-you\/"/);
   assert.match(component, /netlify-honeypot="bot-field"/);
 });
@@ -80,8 +85,11 @@ test("the first peacock-theme carousel scenes are available locally", async () =
 });
 
 test("the homepage keeps accessible carousel and motion controls", async () => {
-  const home = await source("src/pages/index.astro");
-  const styles = await source("src/styles/world-home.css");
+  const [home, styles, publishingStyles] = await Promise.all([
+    source("src/pages/index.astro"),
+    source("src/styles/world-home.css"),
+    source("src/styles/publishing-home.css")
+  ]);
   assert.match(home, /aria-roledescription="carousel"/);
   assert.match(home, /aria-live="polite"/);
   assert.match(home, /data-carousel-previous/);
@@ -89,7 +97,9 @@ test("the homepage keeps accessible carousel and motion controls", async () => {
   assert.match(home, /ArrowLeft/);
   assert.match(home, /ArrowRight/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
-  assert.match(home, /SharedHeader/);
+  assert.match(home, /world-site-header/);
+  assert.match(publishingStyles, /world-site-header__nav/);
+  assert.doesNotMatch(home, /SharedHeader/);
   assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
 
