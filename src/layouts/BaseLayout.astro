@@ -47,7 +47,9 @@ const imageType = imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")
   : imageUrl.endsWith(".webp")
     ? "image/webp"
     : "image/png";
-const pageTitle = title === "Greenways" ? title : `${title} · Greenways`;
+const pageTitle = title === "Greenways" || title.startsWith("Greenways |")
+  ? title
+  : `${title} · Greenways`;
 const structuredData = {
   "@context": "https://schema.org",
   "@type": path.startsWith("/opensource/") && path !== "/opensource/" ? "SoftwareSourceCode" : "WebPage",
