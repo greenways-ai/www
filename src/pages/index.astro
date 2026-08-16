@@ -1,4 +1,6 @@
 ---
+import SharedHeader from "@greenways-ai/visual-language/SharedHeader.astro";
+import Sigil from "@greenways-ai/visual-language/Sigil.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
 import "../styles/publishing-home.css";
@@ -54,25 +56,20 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
   bodyClass="manual-home-page"
   immersive={true}
 >
-  <div slot="header" class="manual-header-shell">
-    <header class="manual-header">
-      <a class="manual-header__brand" href="/" aria-label="Greenways home">
-        <img src="/sigil.svg" alt="" width="38" height="38" />
-        <span>GREENWAYS</span>
-      </a>
-
-      <p class="manual-header__model">PUBLICATION SYSTEM / GW-01</p>
-
-      <nav class="manual-header__nav" aria-label="Primary navigation">
-        <a href="#procedure">01 USE</a>
-        <a href="#forms">02 FORMS</a>
-        <a href="#layout">03 LAYOUT</a>
-        <a href="#control">04 CONTROL</a>
-      </nav>
-
-      <a class="manual-header__access" href="#early-access">ACCESS CARD</a>
-    </header>
-  </div>
+  <SharedHeader
+    slot="header"
+    project="greenways"
+    title="Greenways"
+    homeHref="/"
+    searchBase=""
+    nav={[
+      { label: "Use", href: "#procedure" },
+      { label: "Forms", href: "#forms" },
+      { label: "Layout", href: "#layout" },
+      { label: "Control", href: "#control" }
+    ]}
+    cta={{ label: "Request access", href: "#early-access" }}
+  />
 
   <div class="manual-home">
     <section
@@ -85,7 +82,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
       <div class="manual-cover__copy">
         <div class="manual-cover__index">
           <span>OPERATING CARD</span>
-          <span>REV. A / 2026</span>
+          <span>GW-01 / REV. A</span>
         </div>
 
         <p class="manual-label">SELF-PUBLISHING / SPATIAL</p>
@@ -116,7 +113,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
               aria-hidden={index === 0 ? "false" : "true"}
             >
               <div
-                class="manual-slide__art"
+                class="manual-slide__art gw-themed-artwork"
                 style={artworkStyle(slide)}
                 aria-hidden="true"
               ></div>
@@ -130,7 +127,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
         </div>
 
         <div class="manual-figure__controls">
-          <button type="button" data-carousel-previous aria-label="Show previous figure">←</button>
+          <button class="gw-control manual-figure__arrow" type="button" data-carousel-previous aria-label="Show previous figure">←</button>
           <div class="manual-figure__caption">
             <span data-carousel-count>01 / 05</span>
             <strong data-carousel-caption>FIG. 01 / ESSAY</strong>
@@ -146,7 +143,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
               ></button>
             ))}
           </div>
-          <button type="button" data-carousel-next aria-label="Show next figure">→</button>
+          <button class="gw-control manual-figure__arrow" type="button" data-carousel-next aria-label="Show next figure">→</button>
         </div>
       </div>
 
@@ -296,7 +293,10 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
   </div>
 
   <footer slot="footer" class="manual-footer">
-    <div><img src="/sigil.svg" alt="" width="34" height="34" /><strong>GREENWAYS</strong></div>
+    <a class="manual-footer__brand" href="/" aria-label="Greenways home">
+      <Sigil project="greenways" />
+      <strong>Greenways</strong>
+    </a>
     <p>PUBLICATION SYSTEM / GW-01 / REV. A</p>
     <nav aria-label="Footer navigation">
       <a href="#procedure">USE</a>
