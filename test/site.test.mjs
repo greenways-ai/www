@@ -20,11 +20,14 @@ test("the apex site leads with spatial self-publishing", async () => {
   assert.match(home, /THE PROGRAMMABLE STUDIO/);
   assert.match(home, /PUBLISH TO THE OPEN WEB/);
   assert.match(home, /The freedom of Emacs, brought into three dimensions/);
+  assert.match(home, /world-workbench/);
+  assert.match(home, /publish-edition/);
   assert.match(home, /For the curious/);
   assert.match(home, /https:\/\/oss\.greenways\.ai\//);
   assert.match(home, /Celestial Promenade/);
   assert.match(home, /data-world-carousel/);
   assert.match(home, /world-site-header/);
+  assert.doesNotMatch(home, /HaraPlayground/);
   assert.doesNotMatch(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
   assert.doesNotMatch(home, /STUDIO WIDGETS|OPEN STANDARDS|We are big in open source/);
   assert.doesNotMatch(home, /A high-trust world for creative work/);
@@ -96,9 +99,11 @@ test("the homepage keeps accessible carousel and motion controls", async () => {
   assert.match(home, /data-carousel-next/);
   assert.match(home, /ArrowLeft/);
   assert.match(home, /ArrowRight/);
+  assert.match(home, /aria-label="Preview of the Greenways programmable publishing studio"/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
   assert.match(home, /world-site-header/);
   assert.match(publishingStyles, /world-site-header__nav/);
+  assert.match(publishingStyles, /world-workbench__body/);
   assert.doesNotMatch(home, /SharedHeader/);
   assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
