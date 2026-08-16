@@ -1,4 +1,9 @@
+.world-header-shell {
+  background: linear-gradient(180deg, rgba(2, 20, 22, 0.88), rgba(2, 20, 22, 0));
+}
+
 .world-site-header {
+  position: relative;
   width: min(1240px, calc(100% - 48px));
   min-height: 88px;
   display: grid;
@@ -7,15 +12,6 @@
   gap: 30px;
   margin: 0 auto;
   color: #effffc;
-}
-
-.world-site-header::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(2, 20, 22, 0.88), rgba(2, 20, 22, 0));
 }
 
 .world-site-header__brand,
@@ -126,7 +122,7 @@
   letter-spacing: 0.15em;
 }
 
-.world-principles h3 {
+body.world-home-page .world-principles h3 {
   margin-top: 16px;
 }
 
@@ -183,11 +179,11 @@
   color: var(--world-muted);
 }
 
-.world-section--language .hara-playground {
+body.world-home-page .world-section--language .hara-playground {
   margin-top: 24px;
 }
 
-.world-oss-note {
+body.world-home-page .world-oss-note {
   font-size: 0.9rem;
 }
 
