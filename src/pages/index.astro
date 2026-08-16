@@ -1,41 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BetaForm from "../components/BetaForm.astro";
-import HaraPlayground from "../components/HaraPlayground.astro";
-import SharedHeader from "@greenways-ai/visual-language/SharedHeader.astro";
 import "../styles/world-home.css";
 
 const slides = [
   {
-    title: "Celestial Promenade",
+    title: "Celestial Promenade — immersive essays",
     light: "/artwork/greenways/celestial-promenade-day.webp",
     dark: "/artwork/greenways/celestial-promenade-night.webp",
     lightMobile: "/artwork/greenways/celestial-promenade-day-mobile.webp",
     darkMobile: "/artwork/greenways/celestial-promenade-night-mobile.webp"
   },
   {
-    title: "Peacock Garden",
+    title: "Peacock Garden — spatial editions",
     light: "/artwork/greenways/peacock-garden-day.webp",
     dark: "/artwork/greenways/peacock-garden-night.webp",
     lightMobile: "/artwork/greenways/peacock-garden-day-mobile.webp",
     darkMobile: "/artwork/greenways/peacock-garden-night-mobile.webp"
   },
   {
-    title: "Jeweled Archipelago",
+    title: "Jeweled Archipelago — living books",
     light: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-day-mobile.webp",
     darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/jeweled-archipelago-night-mobile.webp"
   },
   {
-    title: "Solar Steppe Observatories",
+    title: "Solar Steppe Observatories — research worlds",
     light: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-day-mobile.webp",
     darkMobile: "https://oss.greenways.ai/visual-language/artwork/www/solar-steppe-observatories-night-mobile.webp"
   },
   {
-    title: "Aurora Conservatory Belt",
+    title: "Aurora Conservatory Belt — digital exhibitions",
     light: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day.webp",
     dark: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-night.webp",
     lightMobile: "https://oss.greenways.ai/visual-language/artwork/www/aurora-conservatory-belt-day-mobile.webp",
@@ -48,29 +46,29 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
 ---
 
 <BaseLayout
-  title="Greenways"
-  description="Tools, studio widgets and open standards for building great connected experiences."
+  title="Greenways | Publish worlds, books and living documents"
+  description="Greenways is a spatial self-publishing platform for creating books, living documents, exhibitions and 3D worlds, then publishing them directly to the web."
   path="/"
-  image="https://oss.greenways.ai/visual-language/assets/og-greenways.png"
-  imageAlt="A Greenways connected world in aquamarine and cyan"
+  image="https://oss.greenways.ai/visual-language/assets/og-greenways.jpg"
+  imageAlt="A luminous three-dimensional publication made with Greenways"
   bodyClass="world-home-page"
   immersive={true}
 >
   <div slot="header" class="world-header-shell">
-    <SharedHeader
-      project="greenways"
-      title="Greenways"
-      homeHref="/"
-      nav={[
-        { label: "Connected worlds", href: "#worlds" },
-        { label: "Studio widgets", href: "#studio" },
-        { label: "Language", href: "#language" },
-        { label: "Open standards", href: "#standards" }
-      ]}
-      githubHref="https://github.com/greenways-ai"
-      cta={{ label: "Start building", href: "#early-access" }}
-      searchBase=""
-    />
+    <header class="world-site-header">
+      <a class="world-site-header__brand" href="/" aria-label="Greenways home">
+        <img src="/sigil.svg" alt="" width="42" height="42" />
+        <span>Greenways</span>
+      </a>
+
+      <nav class="world-site-header__nav" aria-label="Primary navigation">
+        <a href="#publishing">Publishing</a>
+        <a href="#studio">Studio</a>
+        <a href="#programmable">Programmable</a>
+      </nav>
+
+      <a class="world-site-header__cta" href="#early-access">Join early access</a>
+    </header>
   </div>
 
   <div class="world-home">
@@ -78,7 +76,7 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
       class="world-hero"
       data-world-carousel
       aria-roledescription="carousel"
-      aria-label="Greenways connected worlds"
+      aria-label="Greenways spatial publications"
       tabindex="0"
     >
       <div class="world-carousel__track">
@@ -101,16 +99,20 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
       <div class="world-hero__wash" aria-hidden="true"></div>
 
       <div class="world-hero__content">
-        <p class="world-kicker">BUILD CONNECTED WORLDS</p>
-        <h1>Anyone can build a world.</h1>
+        <p class="world-kicker">INDEPENDENT PUBLISHING, MADE SPATIAL</p>
+        <h1>Publish a world.<br /><span>Not just a page.</span></h1>
         <p class="world-hero__lead">
-          Greenways gives you tools, studio widgets and open standards to build
-          great experiences that can connect across the web.
+          Greenways is a self-publishing platform for books, journals,
+          documents, exhibitions and 3D worlds. Create everything in one
+          programmable studio, then publish it directly to the web.
         </p>
         <div class="world-hero__actions">
-          <a class="world-button world-button--primary" href="#studio">Explore the building blocks</a>
-          <a class="world-button world-button--quiet" href="#worlds">See how worlds connect</a>
+          <a class="world-button world-button--primary" href="#early-access">Join early access</a>
+          <a class="world-button world-button--quiet" href="#studio">Explore the studio</a>
         </div>
+        <p class="world-hero__note">
+          For writers, artists, educators, studios and independent publishers.
+        </p>
       </div>
 
       <div class="world-carousel__controls">
@@ -118,12 +120,12 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
           class="world-carousel__arrow"
           type="button"
           data-carousel-previous
-          aria-label="Show previous world"
+          aria-label="Show previous publication"
         >
           ←
         </button>
 
-        <div class="world-carousel__progress" aria-label="Choose a world">
+        <div class="world-carousel__progress" aria-label="Choose a publication">
           {slides.map((slide, index) => (
             <button
               class:list={["world-carousel__dot", { "is-active": index === 0 }]}
@@ -137,143 +139,231 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
 
         <div class="world-carousel__caption">
           <span data-carousel-count>01 / 05</span>
-          <strong data-carousel-caption>Celestial Promenade</strong>
+          <strong data-carousel-caption>Celestial Promenade — immersive essays</strong>
         </div>
 
         <button
           class="world-carousel__arrow"
           type="button"
           data-carousel-next
-          aria-label="Show next world"
+          aria-label="Show next publication"
         >
           →
         </button>
       </div>
 
       <p class="world-sr-only" aria-live="polite" data-carousel-status>
-        Showing Celestial Promenade, slide 1 of 5.
+        Showing Celestial Promenade, publication 1 of 5.
       </p>
     </section>
 
-    <section id="worlds" class="world-section world-section--worlds">
+    <section id="publishing" class="world-section world-section--worlds">
       <header class="world-section__intro">
-        <p class="world-kicker">CONNECTED WORLDS</p>
-        <h2>Build experiences that can meet each other.</h2>
+        <p class="world-kicker">THE PUBLISHING PLATFORM</p>
+        <h2>Work that can be read, explored and inhabited.</h2>
         <p>
-          A world can be a game, a community, a studio, a service or something
-          nobody has named yet. Greenways makes each one easier to build and
-          ready to connect.
+          A Greenways publication can begin as a paragraph and grow into a
+          book, a room, a gallery, a simulation or an entire world. The medium
+          follows the idea instead of forcing the idea into a template.
         </p>
       </header>
 
       <div class="world-principles">
         <article>
           <span class="world-principle__icon" aria-hidden="true">◇</span>
-          <h3>Start with the experience</h3>
-          <p>Build the thing people see, use and care about before infrastructure gets in the way.</p>
+          <p class="world-principle__label">WORLDS</p>
+          <h3>Build a place around your ideas</h3>
+          <p>Give readers somewhere to enter, wander, return to and share—not only a page to scroll.</p>
         </article>
         <article>
-          <span class="world-principle__icon" aria-hidden="true">⌁</span>
-          <h3>Connect what matters</h3>
-          <p>Bring identity, content, events, tools and communities together without forcing every world into the same shape.</p>
+          <span class="world-principle__icon" aria-hidden="true">▤</span>
+          <p class="world-principle__label">BOOKS</p>
+          <h3>Let long-form work open into space</h3>
+          <p>Combine chapters, images, sound, objects and scenes without giving up the clarity of reading.</p>
         </article>
         <article>
           <span class="world-principle__icon" aria-hidden="true">◎</span>
-          <h3>Keep control</h3>
-          <p>Choose what connects, what stays local and how your world changes as more people arrive.</p>
+          <p class="world-principle__label">LIVING DOCUMENTS</p>
+          <h3>Publish work that keeps growing</h3>
+          <p>Release an edition, develop it in public and give every project a durable home on the web.</p>
         </article>
       </div>
     </section>
 
     <section id="studio" class="world-section world-section--studio">
       <div class="world-studio__copy">
-        <p class="world-kicker">STUDIO WIDGETS</p>
-        <h2>Start with building blocks, not a blank page.</h2>
+        <p class="world-kicker">ONE CREATIVE ENVIRONMENT</p>
+        <h2>Write the book. Build the world. Shape the reader’s path.</h2>
         <p>
-          Assemble rooms, tools, interfaces and shared spaces from reusable
-          widgets. Make them your own, then connect them into a larger
-          experience.
+          Greenways brings a document editor, spatial canvas, media studio and
+          publishing desk into one environment. Move from prose to scene
+          without moving your work between disconnected products.
         </p>
-        <a class="world-text-link" href="#standards">See what connects them →</a>
+        <a class="world-text-link" href="#programmable">See why the studio is programmable →</a>
       </div>
 
-      <div class="world-widget-board" aria-label="Examples of studio widgets">
+      <div class="world-widget-board" aria-label="Greenways publishing studio">
         <article class="world-widget world-widget--wide">
-          <span class="world-widget__icon" aria-hidden="true">◌</span>
-          <div><small>SCENE</small><h3>World canvas</h3><p>Shape the place people enter and explore.</p></div>
+          <span class="world-widget__icon" aria-hidden="true">¶</span>
+          <div><small>MANUSCRIPT</small><h3>Write and structure</h3><p>Develop essays, books, notes and scripts beside the world they belong to.</p></div>
         </article>
         <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">◎</span>
-          <div><small>IDENTITY</small><h3>Profiles</h3><p>Let people arrive as themselves.</p></div>
+          <span class="world-widget__icon" aria-hidden="true">◇</span>
+          <div><small>SPACE</small><h3>Compose scenes</h3><p>Arrange rooms, objects, pathways and viewpoints on a spatial canvas.</p></div>
         </article>
         <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">⌂</span>
-          <div><small>ROOMS</small><h3>Shared spaces</h3><p>Create places for work, play and conversation.</p></div>
-        </article>
-        <article class="world-widget">
-          <span class="world-widget__icon" aria-hidden="true">↯</span>
-          <div><small>AGENTS</small><h3>Active helpers</h3><p>Give agents a clear place and role in the experience.</p></div>
+          <span class="world-widget__icon" aria-hidden="true">◉</span>
+          <div><small>MEDIA</small><h3>Direct the atmosphere</h3><p>Bring image, sound, motion and interaction into the same publication.</p></div>
         </article>
         <article class="world-widget">
           <span class="world-widget__icon" aria-hidden="true">⌁</span>
-          <div><small>FEEDS</small><h3>Live activity</h3><p>Bring updates, media and participation into view.</p></div>
+          <div><small>READING</small><h3>Design the journey</h3><p>Choose what readers encounter, in what order and at what depth.</p></div>
+        </article>
+        <article class="world-widget">
+          <span class="world-widget__icon" aria-hidden="true">↗</span>
+          <div><small>WEB</small><h3>Publish directly</h3><p>Turn the project into a destination people can open and revisit on the web.</p></div>
         </article>
         <article class="world-widget world-widget--wide">
-          <span class="world-widget__icon" aria-hidden="true">◇</span>
-          <div><small>WORKFLOWS</small><h3>Connected actions</h3><p>Turn separate tools into one coherent experience.</p></div>
+          <span class="world-widget__icon" aria-hidden="true">∞</span>
+          <div><small>EDITIONS</small><h3>Keep the work alive</h3><p>Release, revise and expand without losing the identity of the publication.</p></div>
         </article>
       </div>
     </section>
 
-    <section id="language" class="world-section world-section--language">
+    <section id="programmable" class="world-section world-section--language">
       <header class="world-section__intro">
-        <p class="world-kicker">THE SHARED LANGUAGE</p>
-        <h2>One language runs beneath every world.</h2>
+        <p class="world-kicker">THE PROGRAMMABLE STUDIO</p>
+        <h2>The freedom of Emacs, brought into three dimensions.</h2>
         <p>
-          Hara is the small language the Greenways foundations are built
-          from — and a real Hara kernel is running in this page right now.
-          Edit a snippet, press Run, and watch it answer.
+          Greenways is not a fixed page builder. Its editors, commands, views,
+          automations and agents can be reshaped around the way you think.
+          Hara—the Lisp beneath Greenways—makes the studio itself part of the
+          creative material.
         </p>
       </header>
 
-      <HaraPlayground />
+      <div class="world-programmable-grid">
+        <article>
+          <small>EDITORS</small>
+          <h3>Arrange your own workspace</h3>
+          <p>Place manuscript, outline, scene, references, timeline and reader preview beside each other.</p>
+        </article>
+        <article>
+          <small>COMMANDS</small>
+          <h3>Turn habits into tools</h3>
+          <p>Make repeated work into a command, an editor or a reusable extension instead of another manual step.</p>
+        </article>
+        <article>
+          <small>AGENTS</small>
+          <h3>Give intelligence a place to work</h3>
+          <p>Let agents operate inside the publication with visible tools, context and boundaries.</p>
+        </article>
+      </div>
+
+      <div class="world-workbench" aria-label="Preview of the Greenways programmable publishing studio">
+        <header class="world-workbench__bar">
+          <div class="world-workbench__project">
+            <span class="world-workbench__mark" aria-hidden="true">◇</span>
+            <div><small>PUBLICATION</small><strong>The Garden at Dusk</strong></div>
+          </div>
+          <nav aria-label="Example workspace views">
+            <span class="is-active">Compose</span>
+            <span>World</span>
+            <span>Reader</span>
+          </nav>
+          <p><span aria-hidden="true">●</span> Edition 03 · Private draft</p>
+        </header>
+
+        <div class="world-workbench__body">
+          <aside class="world-workbench__outline" aria-label="Example publication outline">
+            <small>OUTLINE</small>
+            <ol>
+              <li class="is-active"><span>01</span> Arrival</li>
+              <li><span>02</span> The glasshouse</li>
+              <li><span>03</span> Night garden</li>
+              <li><span>04</span> Field notes</li>
+            </ol>
+            <div class="world-workbench__sources">
+              <small>SOURCES</small>
+              <p>12 images</p>
+              <p>4 recordings</p>
+              <p>27 notes</p>
+            </div>
+          </aside>
+
+          <section class="world-workbench__canvas" aria-label="Example spatial publication canvas">
+            <img
+              src="/artwork/greenways/peacock-garden-day.webp"
+              alt="A luminous garden publication viewed in the Greenways spatial editor"
+              loading="lazy"
+            />
+            <div class="world-workbench__viewport-top" aria-hidden="true">
+              <span>SCENE / ARRIVAL</span><span>CAMERA 01</span>
+            </div>
+            <div class="world-workbench__node world-workbench__node--one" aria-hidden="true"><span>1</span> Opening text</div>
+            <div class="world-workbench__node world-workbench__node--two" aria-hidden="true"><span>2</span> Reader path</div>
+            <div class="world-workbench__node world-workbench__node--three" aria-hidden="true"><span>3</span> Sound cue</div>
+            <p class="world-workbench__canvas-caption">Move between prose and place without leaving the publication.</p>
+          </section>
+
+          <aside class="world-workbench__inspector" aria-label="Example programmable publication inspector">
+            <div class="world-workbench__tabs"><span>PROPERTIES</span><span class="is-active">HARA</span></div>
+            <small>EDITION COMMAND</small>
+            <pre><code>(publish/edition
+  &#123;:title "The Garden at Dusk"
+   :forms [:book :world]
+   :opening :arrival
+   :audience :public&#125;)</code></pre>
+            <div class="world-workbench__agent">
+              <span aria-hidden="true">✦</span>
+              <div><small>EDITOR AGENT</small><p>Three passages are not yet connected to the reader path.</p></div>
+            </div>
+          </aside>
+        </div>
+
+        <footer class="world-workbench__command">
+          <span>M-x</span>
+          <strong>publish-edition</strong>
+          <p>Ready · web preview current</p>
+        </footer>
+      </div>
     </section>
 
-    <section id="standards" class="world-section world-section--standards">
+    <section id="publish" class="world-section world-section--standards">
       <div class="world-standards__panel">
         <div>
-          <p class="world-kicker">OPEN STANDARDS</p>
-          <h2>Build once. Connect when you are ready.</h2>
+          <p class="world-kicker">PUBLISH TO THE OPEN WEB</p>
+          <h2>From private draft to a place readers can return to.</h2>
         </div>
         <p>
-          Greenways standards help worlds exchange identity, content, events
-          and state without being absorbed into one platform. Your experience
-          keeps its own character while gaining ways to work with others.
+          Choose when the work is ready, release an edition and keep shaping
+          it over time. Greenways is designed to make the publication—not the
+          social feed—the centre of the relationship with your audience.
         </p>
       </div>
 
       <div class="world-standards__grid">
-        <article><h3>Portable identity</h3><p>People should not have to become a different person in every world.</p></article>
-        <article><h3>Shared language</h3><p>Tools and services can cooperate without becoming identical.</p></article>
-        <article><h3>Builder control</h3><p>You decide what connects, what stays local and how the world evolves.</p></article>
+        <article><h3>A home of your own</h3><p>Give each body of work a distinct identity, address and visual language.</p></article>
+        <article><h3>Reading beyond the feed</h3><p>Invite people into a sustained experience instead of competing for a moment of attention.</p></article>
+        <article><h3>Room to keep growing</h3><p>Start with a document today and let it become a world as the work develops.</p></article>
       </div>
     </section>
 
     <section class="world-builder-callout">
       <div>
-        <p class="world-kicker">FOR BUILDERS OF EVERY KIND</p>
-        <h2>You do not need permission to start.</h2>
+        <p class="world-kicker">FOR INDEPENDENT CREATORS</p>
+        <h2>Your publication should feel like yours.</h2>
         <p>
-          Design a room. Publish a tool. Connect a community. Build a complete
-          world. Greenways should make the first step small and the ceiling high.
+          No platform voice. No template ceiling. Start with a chapter, a
+          collection or a room, then make the publication only you could make.
         </p>
       </div>
-      <a class="world-button world-button--primary" href="#early-access">Start building</a>
+      <a class="world-button world-button--primary" href="#early-access">Join early access</a>
     </section>
 
-    <aside class="world-oss-note" aria-label="Greenways open source">
-      <p><strong>We are big in open source.</strong> The public code and standards live on a separate site.</p>
-      <a href="https://oss.greenways.ai/">Visit oss.greenways.ai ↗</a>
+    <aside class="world-oss-note" aria-label="Greenways foundations">
+      <p><strong>For the curious:</strong> Greenways is built on Hara and a set of open foundations.</p>
+      <a href="https://oss.greenways.ai/">See the foundations ↗</a>
     </aside>
 
     <BetaForm />
@@ -285,16 +375,15 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
         <img src="/sigil.svg" alt="" width="42" height="42" />
         <span>Greenways</span>
       </a>
-      <p>Build connected worlds.</p>
+      <p>Publishing for work that deserves a world.</p>
     </div>
     <nav aria-label="Footer navigation">
-      <a href="#worlds">Worlds</a>
+      <a href="#publishing">Publishing</a>
       <a href="#studio">Studio</a>
-      <a href="#language">Language</a>
-      <a href="#standards">Standards</a>
-      <a href="https://oss.greenways.ai/">OSS ↗</a>
+      <a href="#programmable">Programmable</a>
+      <a href="#early-access">Early access</a>
       <a href="/privacy/">Privacy</a>
-      <a href="mailto:hello@greenways.ai">hello@greenways.ai</a>
+      <a href="https://oss.greenways.ai/">Foundations ↗</a>
     </nav>
     <small>© 2026 Greenways Pty Ltd. Greenways marks and artwork reserved.</small>
   </footer>
@@ -328,10 +417,10 @@ const artworkStyle = (slide: (typeof slides)[number]) =>
         if (isActive) dot.setAttribute("aria-current", "true");
         else dot.removeAttribute("aria-current");
       });
-      const title = slides[activeIndex]?.dataset.title ?? "Connected world";
+      const title = slides[activeIndex]?.dataset.title ?? "Spatial publication";
       if (count) count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
       if (caption) caption.textContent = title;
-      if (announce && status) status.textContent = `Showing ${title}, slide ${activeIndex + 1} of ${slides.length}.`;
+      if (announce && status) status.textContent = `Showing ${title}, publication ${activeIndex + 1} of ${slides.length}.`;
     };
 
     const stop = () => {

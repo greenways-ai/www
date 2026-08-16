@@ -1,10 +1,15 @@
+---
+import "../styles/publishing-home.css";
+---
+
 <section class="builder-access" id="early-access" aria-labelledby="builder-access-title">
   <div class="builder-access__copy">
-    <p class="world-kicker">START BUILDING</p>
-    <h2 id="builder-access-title">Build your first experience.</h2>
+    <p class="world-kicker">JOIN THE EARLY STUDIO</p>
+    <h2 id="builder-access-title">Publish your first world.</h2>
     <p>
-      Tell us what you want to make. We are opening Greenways to musicians,
-      artists, world builders, publishers and people creating new tools.
+      Tell us what you want to make. We are opening Greenways to writers,
+      artists, educators, studios and independent publishers who want their
+      work to become more than a page.
     </p>
   </div>
 
@@ -17,7 +22,7 @@
     netlify-honeypot="bot-field"
   >
     <input type="hidden" name="form-name" value="beta-access" />
-    <input type="hidden" name="subject" value="Greenways beta access request" />
+    <input type="hidden" name="subject" value="Greenways publishing early access request" />
     <p class="honeypot"><label>Leave this empty <input name="bot-field" /></label></p>
 
     <label>
@@ -32,13 +37,13 @@
     </label>
 
     <fieldset>
-      <legend>What are you building? <span>Optional</span></legend>
+      <legend>What would you publish? <span>Optional</span></legend>
       <div class="builder-access__interests">
-        <label><input type="checkbox" name="interest_music" value="yes" /><span>Music</span></label>
-        <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>Visuals</span></label>
-        <label><input type="checkbox" name="interest_3d" value="yes" /><span>3D and worlds</span></label>
-        <label><input type="checkbox" name="interest_publishing" value="yes" /><span>Publishing</span></label>
-        <label><input type="checkbox" name="interest_open_source" value="yes" /><span>Open tools</span></label>
+        <label><input type="checkbox" name="interest_music" value="yes" /><span>Music and sound</span></label>
+        <label><input type="checkbox" name="interest_visual_art" value="yes" /><span>Art and exhibitions</span></label>
+        <label><input type="checkbox" name="interest_3d" value="yes" /><span>3D worlds</span></label>
+        <label><input type="checkbox" name="interest_publishing" value="yes" /><span>Books and documents</span></label>
+        <label><input type="checkbox" name="interest_open_source" value="yes" /><span>Editors and extensions</span></label>
       </div>
     </fieldset>
 
@@ -51,7 +56,7 @@
     </label>
 
     <button class="world-button world-button--primary" type="submit">
-      Join early access <span aria-hidden="true">→</span>
+      Request early access <span aria-hidden="true">→</span>
     </button>
   </form>
 </section>
