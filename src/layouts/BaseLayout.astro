@@ -34,6 +34,7 @@ const {
   bodyClass = "",
   immersive = false
 } = Astro.props;
+const manualHeroCarousel = bodyClass.split(/\s+/).includes("manual-home-page");
 const canonical = new URL(path, Astro.site ?? "https://greenways.ai");
 const normalizedImage = image.replace(
   /(https:\/\/oss\.greenways\.ai\/visual-language\/assets\/og-[a-z0-9-]+)\.png$/,
@@ -70,6 +71,7 @@ const structuredData = {
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {manualHeroCarousel && <link rel="stylesheet" href="/manual-hero-carousel.css" />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -88,6 +90,7 @@ const structuredData = {
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <script>import "@greenways-ai/visual-language/theme.js";</script>
+    {manualHeroCarousel && <script is:inline src="/manual-hero-carousel.js" defer></script>}
   </head>
   <body class={bodyClass || undefined}>
     <a class="skip-link" href="#content">Skip to content</a>
