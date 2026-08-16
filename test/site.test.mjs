@@ -25,7 +25,6 @@ test("the apex site reads like a concise publication operating manual", async ()
   assert.match(home, /THE PUBLICATION IS THE PRIMARY OBJECT/);
   assert.match(home, /EMACS PRINCIPLE/);
   assert.match(home, /HARA \/ LISP/);
-  assert.match(home, /manual-header/);
   assert.match(home, /manual-panel/);
   assert.match(home, /data-world-carousel/);
   assert.match(home, /https:\/\/oss\.greenways\.ai\//);
@@ -35,7 +34,12 @@ test("the apex site reads like a concise publication operating manual", async ()
   assert.doesNotMatch(home, /Join early access|Explore the studio/);
   assert.doesNotMatch(home, /Your publication should feel like yours/);
   assert.doesNotMatch(home, /HaraPlayground/);
-  assert.doesNotMatch(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
+  assert.match(home, /@greenways-ai\/visual-language\/SharedHeader\.astro/);
+  assert.match(home, /@greenways-ai\/visual-language\/Sigil\.astro/);
+  assert.doesNotMatch(home, /manual-header/);
+  assert.match(layout, /@greenways-ai\/visual-language\/typography\.css/);
+  assert.match(layout, /@greenways-ai\/visual-language\/theme\.css/);
+  assert.match(layout, /@greenways-ai\/visual-language\/theme\.js/);
   assert.match(layout, /immersive\?: boolean/);
   assert.match(layout, /<slot name="header"/);
   assert.match(layout, /<slot name="footer"/);
@@ -94,7 +98,7 @@ test("the first manual figures are available locally", async () => {
   }
 });
 
-test("the manual carousel remains accessible and motion-aware", async () => {
+test("the manual carousel remains accessible, themed and motion-aware", async () => {
   const [home, styles] = await Promise.all([
     source("src/pages/index.astro"),
     source("src/styles/publishing-home.css")
@@ -106,12 +110,18 @@ test("the manual carousel remains accessible and motion-aware", async () => {
   assert.match(home, /ArrowLeft/);
   assert.match(home, /ArrowRight/);
   assert.match(home, /aria-label="Greenways workspace diagram"/);
+  assert.match(home, /gw-themed-artwork/);
+  assert.match(home, /gw-control/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
   assert.match(styles, /manual-figure__stage/);
   assert.match(styles, /manual-panel__header/);
-  assert.match(styles, /IBM Plex Mono/);
-  assert.match(styles, /--manual-orange/);
-  assert.doesNotMatch(home, /SharedHeader/);
+  assert.match(styles, /var\(--gw-font-display\)/);
+  assert.match(styles, /var\(--gw-font-sans\)/);
+  assert.match(styles, /var\(--gw-font-mono\)/);
+  assert.match(styles, /var\(--gw-canvas\)/);
+  assert.match(styles, /var\(--gw-surface\)/);
+  assert.match(styles, /var\(--gw-verdigris\)/);
+  assert.doesNotMatch(styles, /--manual-paper|--manual-orange|#e8e1cc/);
   assert.doesNotMatch(home, /data-world-theme|data-world-menu-toggle/);
 });
 
